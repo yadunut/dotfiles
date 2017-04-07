@@ -8,7 +8,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 "Autocompletor and some syntax
-Plugin 'valloric/youcompleteme'
+"Plugin 'valloric/youcompleteme'
 
 "Should put a status bar at the bottom of vim
 Plugin 'bling/vim-airline'
@@ -40,6 +40,12 @@ Plugin 'sheerun/vim-polyglot'
 "Color Schemes
 Plugin 'flazz/vim-colorschemes'
 
+"TernJs
+"Plugin 'ternjs/tern_for_vim'
+
+"JavaScript
+Plugin 'pangloss/vim-javascript'
+
 call vundle#end()
 filetype plugin indent on
 
@@ -51,6 +57,12 @@ syntax on
 
 "For you Complete me
 let g:ycm_global_ycm_extra_conf='~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+
+"For TernJs
+"enable keyboard shortcuts
+let g:tern_map_keys=1
+"show argument hints
+let g:tern_show_argument_hints='on_hold'
 
 "For airline
 let g:airline_powerline_fonts=1

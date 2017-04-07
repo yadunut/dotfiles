@@ -44,5 +44,6 @@ git clone https://github.com/yadunut/dotfiles.git ~/dev/dotfiles
 ln -s -F ~/dev/dotfiles/.vimrc ~/.vimrc
 ln -s -F ~/dev/dotfiles/.bash_profile ~/.bash_profile
 ln -s -F ~/dev/dotfiles/.tmux.conf ~/.tmux.conf
+ln -s -F ~/dev/dotfiles/.tern-project  ~/.tern-project
 
 chflags nohidden ~/Library

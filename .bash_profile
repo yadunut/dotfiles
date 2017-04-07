@@ -13,6 +13,9 @@ alias tmux-kill-window="tmux kill-window -t"
 alias tmux-attach="tmux attach -t"
 alias mkdir="mkdir -p"
 
+alias gitl="git log"
+alias gitc="git commit -m"
+alias gits="git status"
 
 function mkcdir() {
 	mkdir -p "$1" && cd "$1"
