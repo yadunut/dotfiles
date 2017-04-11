@@ -17,6 +17,8 @@ alias gitl="git log"
 alias gitc="git commit -m"
 alias gits="git status"
 
+alias c="clear"
+
 function mkcdir() {
 	mkdir -p "$1" && cd "$1"
 }

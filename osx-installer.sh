@@ -23,9 +23,9 @@ brew install nmap
 brew install node
 brew install tmux
 brew install wget
-brew install glew
-brew install glfw
-brew install glm
+#brew install glew
+#brew install glfw
+#brew install glm
 brew install tree
 #brew install mysql
 

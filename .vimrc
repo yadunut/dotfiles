@@ -46,6 +46,12 @@ Plugin 'flazz/vim-colorschemes'
 "JavaScript
 Plugin 'pangloss/vim-javascript'
 
+"Org Mode
+Plugin 'jceb/vim-orgmode'
+
+"Visual Mode easier selection 
+Plugin 'terryma/vim-expand-region'
+
 call vundle#end()
 filetype plugin indent on
 
@@ -90,10 +96,26 @@ set laststatus=2
 set wildmenu
 set background=dark
 set backspace=2
+colorscheme Tomorrow-Night-Bright
 
 "Let map leader key to <space>
-let mapLeader=","
+let mapleader = "\<Space>"
 
+nnoremap <Leader>o :CtrlP<CR>
+nnoremap <Leader>w :w<CR>
+nnoremap <Leader>d :bd<CR>
+nnoremap <Leader><Leader> V
+vmap <Leader>y "*y
+vmap <Leader>d "*d
+nmap <Leader>p "+p
+nmap <Leader>P "+P
+vmap <Leader>p "+p
+vmap <Leader>P "+P
+
+vmap v <Plug>(expand_region_expand)
+vmap <C-v> <Plug>(expand_region_shrink)
+
+noremap ; :
 
 "Maps
 "keeps cursor on centre of screen
@@ -104,7 +126,7 @@ nnoremap <Leader>zz :let &scrolloff=999-&scrolloff<CR>
 inoremap jk <esc>
 
 " Easy access to blackhole register
-nnoremap <Leader> "_
+"nnoremap <Leader> "_
 
 "Adds support for scolling through buffers
 nnoremap <C-n> :bnext<CR>
