@@ -19,3 +19,13 @@
 ** VLC
 ** Razer Synapse
 ** Eclipse
+
+
+* Windows
+Discord
+OVerwatch
+Visual Studios Professional 2017
+Razer
+qBitTorrent
+7-zip
+VLC
