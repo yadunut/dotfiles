@@ -97,9 +97,9 @@ set relativenumber
 set ruler
 set laststatus=2
 set wildmenu
-set background=dark
 set backspace=2
 colorscheme Tomorrow-Night-Bright
+set background=dark
 
 "Let map leader key to <space>
 let mapleader = "\<Space>"

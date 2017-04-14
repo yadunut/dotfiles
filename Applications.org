@@ -1,34 +1,33 @@
-* important Applications
-** 1Password
-** Android Studios
-** Photoshop
-** XCode
-** Atom
-** Bartender
-** Daisy DIsk
-** Source Tree
-** Discord
-** Lynda
-** OmniFocus
-** PasteBot
-** Postman
-** Slack
-** Spotify
-** Tuxera Disk Manager
-** uTorrent
-** VLC
-** Razer Synapse
-** Eclipse
+* TODO important Applications [0/19]
 
-
+  - [ ] 1Password
+  - [ ] Android Studios
+  - [ ] Photoshop
+  - [ ] XCode
+  - [ ] Atom
+  - [ ] Bartender
+  - [ ] Daisy DIsk
+  - [ ] Source Tree
+  - [ ] Discord
+  - [ ] Lynda
+  - [ ] OmniFocus
+  - [ ] PasteBot
+  - [ ] Postman
+  - [ ] Slack
+  - [ ] Spotify
+  - [ ] Tuxera Disk Manager
+  - [ ] uTorrent
+  - [ ] VLC
+  - [ ] Razer Synapse
+  - [ ] Eclipse
 * Windows
-Discord
-OVerwatch
-Visual Studios Professional 2017
-Razer
-qBitTorrent
-7-zip
-VLC
+  - [ ] Discord
+  - [ ] OVerwatch
+  - [ ] Visual Studios Professional 2017
+  - [ ] Razer
+  - [ ] qBitTorrent
+  - [ ] 7-zip
+  - [ ] VLC
 * Programming Languages
-** Haskell
-** Javascript
+  - [ ] Haskell
+  - [ ] Javascript
