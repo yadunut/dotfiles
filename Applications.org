@@ -29,3 +29,6 @@ Razer
 qBitTorrent
 7-zip
 VLC
+* Programming Languages
+** Haskell
+** Javascript
