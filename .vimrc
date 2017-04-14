@@ -52,6 +52,9 @@ Plugin 'jceb/vim-orgmode'
 "Visual Mode easier selection 
 Plugin 'terryma/vim-expand-region'
 
+"Dates
+Plugin 'tpope/vim-speeddating'
+
 call vundle#end()
 filetype plugin indent on
 
@@ -105,6 +108,7 @@ nnoremap <Leader>o :CtrlP<CR>
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>d :bd<CR>
 nnoremap <Leader><Leader> V
+nnoremap <Leader>q :q<CR>
 vmap <Leader>y "*y
 vmap <Leader>d "*d
 nmap <Leader>p "+p
