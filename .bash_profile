@@ -16,6 +16,7 @@ alias mkdir="mkdir -p"
 alias gitl="git log"
 alias gitc="git commit -m"
 alias gits="git status"
+alias gita="git add -A"
 
 alias c="clear"
 

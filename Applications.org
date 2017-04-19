@@ -1,12 +1,12 @@
-* TODO important Applications [0/19]
+* TODO important Applications [8/20]
 
-  - [ ] 1Password
-  - [ ] Android Studios
-  - [ ] Photoshop
+  - [X] 1Password
+  - [X] Android Studios
+  - [X] Photoshop
   - [ ] XCode
   - [ ] Atom
-  - [ ] Bartender
-  - [ ] Daisy DIsk
+  - [X] Bartender
+  - [X] Daisy DIsk
   - [ ] Source Tree
   - [ ] Discord
   - [ ] Lynda
@@ -14,11 +14,11 @@
   - [ ] PasteBot
   - [ ] Postman
   - [ ] Slack
-  - [ ] Spotify
+  - [X] Spotify
   - [ ] Tuxera Disk Manager
-  - [ ] uTorrent
+  - [X] uTorrent
   - [ ] VLC
-  - [ ] Razer Synapse
+  - [X] Razer Synapse
   - [ ] Eclipse
 * Windows
   - [ ] Discord
