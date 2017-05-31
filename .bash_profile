@@ -35,4 +35,5 @@ parse_git_branch() {
 
 archey
 
-export PS1="\h:\W \u\$(parse_git_branch)\$ "
+#export PS1="\h:\W \u\$(parse_git_branch)\$ "
+export PS1="\h:\W \u\[\033[1;33m\$(parse_git_branch)\]\[\033[0m\]\$ "
