@@ -27,3 +27,12 @@ function mkcdir() {
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
 
+parse_git_branch() {
+	git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
+
+#Commands to run @start
+
+archey
+
+export PS1="\h:\W \u\$(parse_git_branch)\$ "

@@ -7,9 +7,6 @@ call vundle#begin()
 "Vundle needs to manage itself
 Plugin 'VundleVim/Vundle.vim'
 
-"Autocompletor and some syntax
-"Plugin 'valloric/youcompleteme'
-
 "Should put a status bar at the bottom of vim
 Plugin 'bling/vim-airline'
 
@@ -46,14 +43,9 @@ Plugin 'flazz/vim-colorschemes'
 "JavaScript
 Plugin 'pangloss/vim-javascript'
 
-"Org Mode
-Plugin 'jceb/vim-orgmode'
-
 "Visual Mode easier selection 
 Plugin 'terryma/vim-expand-region'
 
-"Dates
-Plugin 'tpope/vim-speeddating'
 
 call vundle#end()
 filetype plugin indent on
