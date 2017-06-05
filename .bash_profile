@@ -2,7 +2,7 @@ export PATH="/usr/local/sbin:$PATH"
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
-alias ls="ls -al"
+alias ls="ls -alFh"
 
 alias tmux-new="tmux new -s"
 alias tmux-kill-session="tmux kill-session -t"
