@@ -3,6 +3,7 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
 alias ls="ls -alFh"
+alias sbp="source ~/.bash_profile"
 
 alias tmux-new="tmux new -s"
 alias tmux-kill-session="tmux kill-session -t"
@@ -33,4 +34,4 @@ parse_git_branch() {
 archey
 
 #export PS1="\h:\W \u\$(parse_git_branch)\$ "
-export PS1="\h:\W \u\[\033[1;33m\$(parse_git_branch)\]\[\033[0m\] \$ "
+export PS1="\h:\W \u\[\033[1;33m\$(parse_git_branch)\] \[\033[1;45m\$\]\[\033[0m\] "
