@@ -12,7 +12,7 @@ alias tmux-attach="tmux attach -t"
 alias mkdir="mkdir -p"
 
 alias gitl="git log"
-alias gitc="git commit -m"
+alias gitc="git commit"
 alias gits="git status"
 alias gita="git add -A"
 
@@ -27,6 +27,7 @@ function mkcdir() {
 
 parse_git_branch() {
 	git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+#	git branch 2> /dev/null | sed -e 
 }
 
 #Commands to run @start
@@ -34,4 +35,4 @@ parse_git_branch() {
 archey
 
 #export PS1="\h:\W \u\$(parse_git_branch)\$ "
-export PS1="\h:\W \u\[\033[1;33m\$(parse_git_branch)\] \[\033[1;45m\$\]\[\033[0m\] "
+export PS1="\h:\W \u\n\[\033[1;33m\$(parse_git_branch)\] \[\033[1;45m\$\]\[\033[0m\] "
