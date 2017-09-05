@@ -51,6 +51,9 @@ chmod +x installer.sh
 mkdir -p ~/.config/nvim/dein
 sh ./installer.sh ~/.config/nvim/dein
 
+#Adds tmux powerline
+git clone https://github.com/erikw/tmux-powerline.git ~/dev/dotfiles/tmux-powerline
+
 
 
 
