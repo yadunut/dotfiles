@@ -7,10 +7,11 @@ while true; do
    	sleep 60; 
 	kill -0 "$$" || exit; 
 done 2>/dev/null &
-xcode-select --install
 
+#Install homebrew
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
+#Doctor twice cause brew is dumb sometimes
 brew doctor
 brew doctor
 
@@ -22,45 +23,40 @@ brew install cmake
 brew install nmap
 brew install node
 brew install tmux
+brew install neovim
 brew install wget
-brew install glew
-brew install glfw
-brew install glm
 brew install tree
-#brew install mysql
+#brew install elixir
 
+#Cleanup
 brew cleanup
 brew doctor
 
-
-#######
-#setup vim & terminal
-#######
-mkdir ~/dev
-cd ~/dev
-
 git clone https://github.com/yadunut/dotfiles.git ~/dev/dotfiles
+cd ~/dev/dotfiles
 
-#Clone vundle and set up vim#
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-vim +PluginInstall +qall
+#Links all the appropriate files
+ln -s -F ~/dev/dotfiles/bash_profile.bash ~/.bash_profile
+ln -s -F ~/dev/dotfiles/git-completion.bash ~/.git-completion.bash
+ln -s -F ~/dev/dotfiles/git-completion.zsh ~/.git-completion.zsh
+ln -s -F ~/dev/dotfiles/tmux.conf ~/.tmux.conf
+ln -s -F ~/dev/dotfiles/vimrc.vim ~/.vimrc
+ln -s -F ~/dev/dotfiles/zshrc.zsh ~/.zshrc
+ln -s -F ~/dev/dotfiles/nvim.vim ~/.config/nvim/init.vim
 
-ln -s -F ~/dev/dotfiles/.vimrc ~/.vimrc
-ln -s -F ~/dev/dotfiles/.bash_profile ~/.bash_profile
-ln -s -F ~/dev/dotfiles/.tmux.conf ~/.tmux.conf
-ln -s -F ~/dev/dotfiles/.tern-project  ~/.tern-project
+#####Vim plugins
+#Dein Plugin Manager
+curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.sh
+chmod +x installer.sh
+mkdir -p ~/.config/nvim/dein
+sh ./installer.sh ~/.config/nvim/dein
 
 
-################System Prefernces Settings################
-#Reboots computer when freeze
-systemsetup -setrestartfreeze on
 
-#Sets key repeat rate faster
-defaults write NSGlobalDomain KeyRepeat -int 2
 
-#require password immediately after sleep
-defaults write com.apple.screensaver askForPassword -int 1
-defaults write com.apple.screensaver askForPasswordDelay -int 0
 
-chflags nohidden ~/Library
+
+
+
+
 
