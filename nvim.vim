@@ -1,7 +1,7 @@
 set runtimepath^=~/.vim runtimepath+=~/.vim/after
 let &packpath = &runtimepath
 
-set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab number relativenumber scrolloff=999
+set tabstop=4 softtabstop=0 expandtab shiftwidth=2 smarttab number relativenumber scrolloff=999
 
 "Keymaps
 "Sets leader key to space
@@ -67,10 +67,8 @@ set runtimepath+=~/.config/nvim/dein/repos/github.com/Shougo/dein.vim
 "Dein Plugins
 if dein#load_state('~/.config/nvim/dein')
     call dein#begin('~/.config/nvim/dein')
-    
     "Dein needs to call itself
     call dein#add('~/.config/nvim/dein/repos/github.com/Shougo/dein.vim')
-    "call dein#add() "Format for plugins
     "Autocomplete
     call dein#add('Shougo/deoplete.nvim')
     "Helm(emacs) like fuzzy file / buffer search
@@ -82,7 +80,21 @@ if dein#load_state('~/.config/nvim/dein')
     call dein#add('scrooloose/nerdcommenter')
     "Better vim-tmux split/pane controls
     call dein#add('christoomey/vim-tmux-navigator')
+    "Elixir
+    call dein#add('slashmili/alchemist.vim')
+    call dein#add('elixir-lang/vim-elixir')
+    "Autopairs brackets
+    call dein#add('jiangmiao/auto-pairs')
+    "Markdown
+    call dein#add('shime/vim-livedown')
+    "HTML auto Tag Closing
+    call dein#add('alvan/vim-closetag')
+    "For javascript completion
+    call dein#add('carlitux/deoplete-ternjs')
     
+    if dein#check_install()
+        call dein#install()
+    endif
     call dein#end()
     call dein#save_state()
 endif

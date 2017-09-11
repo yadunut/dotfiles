@@ -26,7 +26,9 @@ brew install tmux
 brew install neovim
 brew install wget
 brew install tree
+#Elixir stuff
 #brew install elixir
+#brew install postgresql
 
 #Cleanup
 brew cleanup
@@ -34,6 +36,7 @@ brew doctor
 
 git clone https://github.com/yadunut/dotfiles.git ~/dev/dotfiles
 cd ~/dev/dotfiles
+ZSH_CUSTOM=~/.config/zsh/custom
 
 #Links all the appropriate files
 ln -s -F ~/dev/dotfiles/bash_profile.bash ~/.bash_profile
@@ -43,6 +46,8 @@ ln -s -F ~/dev/dotfiles/tmux.conf ~/.tmux.conf
 ln -s -F ~/dev/dotfiles/vimrc.vim ~/.vimrc
 ln -s -F ~/dev/dotfiles/zshrc.zsh ~/.zshrc
 ln -s -F ~/dev/dotfiles/nvim.vim ~/.config/nvim/init.vim
+mkdir -p ~/.config/zsh/custom
+ln -s ~/dev/dotfiles/zsh_custom/ ~/.config/zsh/custom
 
 #####Vim plugins
 #Dein Plugin Manager
