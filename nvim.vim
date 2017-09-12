@@ -32,6 +32,8 @@ nmap <Leader>P "+P
 vmap <Leader>p "+p
 vmap <Leader>P "+P
 
+set foldmethod=indent
+
 
 "Airline settings
 "Enables powerline
