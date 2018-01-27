@@ -28,6 +28,8 @@ brew install neovim
 brew install wget
 #Visual ls
 brew install tree
+#Golang
+brew install go
 
 #Doctor and cleanup to delete un-necessary files
 brew cleanup
@@ -47,6 +49,9 @@ brew cask install google-chrome
 brew cask install 1password
 #Whatsapp
 brew cask install whatsapp
+#Python
+brew install python
+brew install python3
 
 #Clone my dotfiles into the proper directory
 git clone https://github.com/yadunut/dotfiles.git ~/dev/dotfiles
@@ -65,6 +70,8 @@ mkdir -p ~/.config/nvim/dein
 curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > ~/dev/dotfiles/files/installer.sh
 sh ~/dev/dotfiles/files/installer.sh ~/.config/nvim/dein
 
+#Setup for deoplete-go
+go get -u github.com/nsf/gocode
 
 #symlink the appropriate files in the dotfiles folder
 ln -s -F ~/dev/dotfiles/nvim.vim ~/.config/nvim/init.vim
