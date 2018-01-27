@@ -38,6 +38,11 @@ brew install wget
 brew install tree
 #Golang
 brew install go
+#Python
+brew install python
+brew install python3
+#zsh
+brew install zsh
 
 #Doctor and cleanup to delete un-necessary files
 brew cleanup
@@ -57,11 +62,16 @@ brew cask install google-chrome
 brew cask install 1password
 #Whatsapp
 brew cask install whatsapp
-#Python
-brew install python
-brew install python3
-#zsh
-brew install zsh
+#Alfred
+brew cask install alfred
+#Bartender Menu Bar
+brew cask install bartender
+#Git Kraken
+brew cask install gitkraken
+#The Unarchiver
+brew cask install the-unarchiver
+#VLC
+brew cask install vlc
 
 
 #Clone my dotfiles into the proper directory
