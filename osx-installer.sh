@@ -74,8 +74,9 @@ sh ~/dev/dotfiles/files/installer.sh ~/.config/nvim/dein
 go get -u github.com/nsf/gocode
 
 #symlink the appropriate files in the dotfiles folder
-ln -s -F ~/dev/dotfiles/nvim.vim ~/.config/nvim/init.vim
-ln -s -F ~/dev/dotfiles/zshrc.zsh   ~/.zshrc
+ln -s -F ~/dev/dotfiles/nvim.vim  ~/.config/nvim/init.vim
+ln -s -F ~/dev/dotfiles/zshrc.zsh ~/.zshrc
+ln -s -F ~/dev/dotfiles/tmux.conf ~/.tmux.conf
 
 #Messages for the user
 echo "Remember to set terminal font to Inconsolata for Powerline"
