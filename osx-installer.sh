@@ -1,70 +1,73 @@
-#ask for sudo
+################################################################################
+########### Yadunand's osx installer script to setup new computers #############
+################################################################################
+
+# Ask for sudo
 sudo -v
 
-#run sudo constantly
-while true; do 
-	sudo -n true;
-   	sleep 60; 
-	kill -0 "$$" || exit; 
-done 2>/dev/null &
 
-#Install homebrew
+################################### Homebrew ###################################
+
+#Install Homebrew(Package Manager for Mac)
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
-#Doctor twice cause brew is dumb sometimes
+#Brew doctor cleans up if theres issues(Run it twice cause issues)
 brew doctor
 brew doctor
 
+#Update and Upgrade brew
 brew update
 brew upgrade
+brew doctor
 
-brew install archey
-brew install cmake
-brew install nmap
-brew install node
+#Terminal Multiplexer
 brew install tmux
+#Better Vim
 brew install neovim
+#Similar to curl
 brew install wget
+#Visual ls
 brew install tree
-#Elixir stuff
-#brew install elixir
-#brew install postgresql
 
-#Cleanup
+#Doctor and cleanup to delete un-necessary files
 brew cleanup
 brew doctor
 
+#Get Homebrew casks to install applications
+brew tap caskroom/cask
+#VSCode
+brew cask install visual-studio-code
+#Firefox
+brew cask install firefox
+#Discord
+brew cask install discord
+#Google Chrome
+brew cask install google-chrome
+#1Password
+brew cask install 1password
+#Whatsapp
+brew cask install whatsapp
+
+#Clone my dotfiles into the proper directory
 git clone https://github.com/yadunut/dotfiles.git ~/dev/dotfiles
-cd ~/dev/dotfiles
-ZSH_CUSTOM=~/.config/zsh/custom
 
-#Links all the appropriate files
-ln -s -F ~/dev/dotfiles/bash_profile.bash ~/.bash_profile
-ln -s -F ~/dev/dotfiles/git-completion.bash ~/.git-completion.bash
-ln -s -F ~/dev/dotfiles/git-completion.zsh ~/.git-completion.zsh
-ln -s -F ~/dev/dotfiles/tmux.conf ~/.tmux.conf
-ln -s -F ~/dev/dotfiles/vimrc.vim ~/.vimrc
-ln -s -F ~/dev/dotfiles/zshrc.zsh ~/.zshrc
+# Install oh my zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+#Install Inconsolata for powerline
+wget -P ~/Library/Fonts https://github.com/powerline/fonts/raw/master/Inconsolata/Inconsolata%20for%20Powerline.otf
+
+#Make files directory to store files
+mkdir -p ~/dev/dotfiles/files
+
+#Install Dein
+curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > ~/dev/dotfiles/files/installer.sh
+sh ~/dev/dotfiles/files/installer.sh ~/dev/dotfiles/files/
+
+#symlink the appropriate files in the dotfiles folder
 ln -s -F ~/dev/dotfiles/nvim.vim ~/.config/nvim/init.vim
-mkdir -p ~/.config/zsh/custom
-ln -s ~/dev/dotfiles/zsh_custom/ ~/.config/zsh/custom
+ln -s -F ~/dev/dotfiles/zshrc.zsh   ~/.zshrc
 
-#####Vim plugins
-#Dein Plugin Manager
-curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.sh
-chmod +x installer.sh
-mkdir -p ~/.config/nvim/dein
-sh ./installer.sh ~/.config/nvim/dein
-
-#Adds tmux powerline
-git clone https://github.com/erikw/tmux-powerline.git ~/dev/dotfiles/tmux-powerline
-
-
-
-
-
-
-
-
-
-
+#Messages for the user
+echo "Remember to set terminal font to Inconsolata for Powerline"
+echo "Install Terminal Color Schemes and set default to solarized dark"
