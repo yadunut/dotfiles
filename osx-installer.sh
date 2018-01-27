@@ -59,10 +59,12 @@ wget -P ~/Library/Fonts https://github.com/powerline/fonts/raw/master/Inconsolat
 
 #Make files directory to store files
 mkdir -p ~/dev/dotfiles/files
+mkdir -p ~/.config/nvim/dein
 
-#Install Dein
+#Install Dein(Plugin Manager for vim)
 curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > ~/dev/dotfiles/files/installer.sh
-sh ~/dev/dotfiles/files/installer.sh ~/dev/dotfiles/files/
+sh ~/dev/dotfiles/files/installer.sh ~/.config/nvim/dein
+
 
 #symlink the appropriate files in the dotfiles folder
 ln -s -F ~/dev/dotfiles/nvim.vim ~/.config/nvim/init.vim
