@@ -94,11 +94,15 @@ nnoremap ; :
 "Go to next buffer
 nnoremap <C-n> :bnext<CR>
 nnoremap <C-b> :bprevious<CR>
+
 "Open up Denite and search in folder
 nnoremap <Leader>pf :Denite file_rec <CR>
 nnoremap <C-p> :Denite file_rec <CR>
 "Open up Denite and search in buffer
 nnoremap <Leader>pb :Denite buffer <CR>
+
+"Open NerdTree
+nnoremap <Leader>t :NERDTreeToggle <CR>
 
 "Write file
 nnoremap <Leader>w :w<CR>
