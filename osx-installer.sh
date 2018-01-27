@@ -60,6 +60,9 @@ brew cask install whatsapp
 #Python
 brew install python
 brew install python3
+#zsh
+brew install zsh
+
 
 #Clone my dotfiles into the proper directory
 git clone https://github.com/yadunut/dotfiles.git ~/dev/dotfiles
@@ -85,6 +88,9 @@ go get -u github.com/nsf/gocode
 ln -s -F ~/dev/dotfiles/nvim.vim  ~/.config/nvim/init.vim
 ln -s -F ~/dev/dotfiles/zshrc.zsh ~/.zshrc
 ln -s -F ~/dev/dotfiles/tmux.conf ~/.tmux.conf
+
+#Change default shell to zsh
+chsh -s /bin/zsh
 
 #Messages for the user
 echo "Remember to set terminal font to Inconsolata for Powerline"

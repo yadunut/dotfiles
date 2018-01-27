@@ -126,6 +126,16 @@ vmap <Leader>y "*y
 "Visual mode paste from register
 vmap <Leader>p "*p
 
+"Tab completion for deoplete
+inoremap <silent><expr> <TAB>
+    \ pumvisible() ? "\<C-n>" :
+    \ <SID>check_back_space() ? "\<TAB>" :
+    \ deoplete#mappings#manual_complete()
+function! s:check_back_space() abort "{{{
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~ '\s'
+endfunction"}}}
+
 "Go Specific
 autocmd FileType go nmap <leader>b <Plug>(go-build)
 autocmd FileType go nmap <leader>r <Plug>(go-run)
