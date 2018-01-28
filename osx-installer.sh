@@ -79,10 +79,18 @@ brew cask install gitkraken
 brew cask install the-unarchiver
 #VLC
 brew cask install vlc
+#Tuxera NTFS
+brew cask install tuxera-ntfs
+
+#Python support for neovim
+pip3 install neovim
 
 
 #Clone my dotfiles into the proper directory
 git clone https://github.com/yadunut/dotfiles.git ~/dev/dotfiles
+
+#Clone Tmux Plugin Manager into Proper directory
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 # Install oh my zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"

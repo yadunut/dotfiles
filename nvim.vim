@@ -27,15 +27,15 @@ if &compatible
 endif
 
 "Required:
-set runtimepath+=/Users/yadunand/.config/nvim/dein/repos/github.com/Shougo/dein.vim
+set runtimepath+=~/.config/nvim/dein/repos/github.com/Shougo/dein.vim
 
 "Required:
-if dein#load_state('/Users/yadunand/.config/nvim/dein')
-  call dein#begin('/Users/yadunand/.config/nvim/dein')
+if dein#load_state('~/.config/nvim/dein')
+  call dein#begin('~/.config/nvim/dein')
 
   "Let dein manage dein
   "Required:
-  call dein#add('/Users/yadunand/.config/nvim/dein/repos/github.com/Shougo/dein.vim')
+  call dein#add('~/.config/nvim/dein/repos/github.com/Shougo/dein.vim')
 
   "Add or remove your plugins here:
   "Autocompletion
