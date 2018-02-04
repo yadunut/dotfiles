@@ -14,6 +14,8 @@
 export ZSH=~/.oh-my-zsh
 #Homebrew stuff
 export PATH="/usr/local/sbin:$PATH"
+export PATH=$PATH:$GOPATH/bin
+export GOPATH=$HOME/go
 
 
 # Set name of the theme to load. Optionally, if you set this to "random"

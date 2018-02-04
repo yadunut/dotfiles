@@ -101,7 +101,10 @@ nnoremap ; :
 :nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
 "Go to next buffer
 nnoremap <C-n> :bnext<CR>
+"Go to previous buffer
 nnoremap <C-b> :bprevious<CR>
+"Close current buffer
+nnoremap <C-k> :bdelete<CR>
 
 "Open up Denite and search in folder
 nnoremap <Leader>pf :Denite file_rec <CR>
