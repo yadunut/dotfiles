@@ -13,9 +13,12 @@
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
 #Homebrew stuff
-export PATH="/usr/local/sbin:$PATH"
-export PATH=$PATH:$GOPATH/bin
+#
 export GOPATH=$HOME/go
+export PATH="/usr/local/sbin:$PATH"
+export PATH=$GOPATH/bin:$PATH
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+
 
 
 # Set name of the theme to load. Optionally, if you set this to "random"
@@ -113,6 +116,8 @@ source $ZSH/oh-my-zsh.sh
 alias c="clear"
 alias reload="source ~/.zshrc"
 alias vim="nvim"
+alias t="tree"
+alias copypwd="pwd | pbcopy"
 
 DEFAULT_USER='$(whoami)'
 prompt_context() {}

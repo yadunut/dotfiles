@@ -40,7 +40,6 @@ if dein#load_state('~/.config/nvim/dein')
   "Add or remove your plugins here:
   "Autocompletion
   call dein#add('Shougo/deoplete.nvim')
-
   "Golang autcompletion
   call dein#add('fatih/vim-go')
   call dein#add('zchee/deoplete-go', {'build': 'make'})
@@ -56,7 +55,12 @@ if dein#load_state('~/.config/nvim/dein')
   call dein#add('edkolev/tmuxline.vim')
   "Fuzzy File Finding
   call dein#add('Shougo/denite.nvim')
-
+  "Commenting
+  call dein#add('scrooloose/nerdcommenter')
+  "Snippets
+  call dein#add('SirVer/ultisnips')
+  "Org-mode
+  call dein#add('jceb/vim-orgmode')
 
   "Required:
   call dein#end()
@@ -80,15 +84,22 @@ syntax enable
 "---------------------------------Plugin Config----------------------------------
 "--------------------------------------------------------------------------------
 "Deoplete
+let g:go_fmt_command="goimports"
+let g:go_metalinter_autosave=1
+let g:go_gocode_unimported_packages=1
+
 let g:deoplete#enable_at_startup = 1
 "Sets gocode binary
-let g:deoplete#sources#go#gocode_binary = '$GOPATH/bin/gocode'
+"let g:deoplete#sources#go#gocode_binary = '$GOPATH/bin/gocode'
 "Powerline Theme to use
 let g:airline_powerline_fonts = 1
 let g:airline_theme='base16_default'
 let g:airline_solarized_bg='dark'
 "Shows all buffers
 let g:airline#extensions#tabline#enabled = 1
+"Ultisnips
+let g:UltiSnipsExpandTrigger="<C-s>"
+
 
 "--------------------------------------------------------------------------------
 "-----------------------------------Key Binds------------------------------------
@@ -104,7 +115,11 @@ nnoremap <C-n> :bnext<CR>
 "Go to previous buffer
 nnoremap <C-b> :bprevious<CR>
 "Close current buffer
-nnoremap <C-k> :bdelete<CR>
+nnoremap <C-v> :bdelete<CR>
+"Exit to normal mode
+imap jk <Esc>
+"Comment
+imap <C-c> <plug>NERDCommenterInsert
 
 "Open up Denite and search in folder
 nnoremap <Leader>pf :Denite file_rec <CR>
@@ -142,6 +157,8 @@ endfunction"}}}
 "Go Specific
 autocmd FileType go nmap <leader>b <Plug>(go-build)
 autocmd FileType go nmap <leader>r <Plug>(go-run)
+autocmd FileType go set tabstop=4
+autocmd FileType go set shiftwidth=4
 
 
 
