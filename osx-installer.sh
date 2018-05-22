@@ -93,7 +93,7 @@ git clone https://github.com/yadunut/dotfiles.git ~/dev/dotfiles
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 # Install oh my zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+export ZSH="$HOME/dev/dotfiles/oh-my-zsh"; sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 #Install Inconsolata for powerline
 wget -P ~/Library/Fonts https://github.com/powerline/fonts/raw/master/Inconsolata/Inconsolata%20for%20Powerline.otf
@@ -114,8 +114,6 @@ ln -s -F ~/dev/dotfiles/nvim.vim  ~/.config/nvim/init.vim
 ln -s -F ~/dev/dotfiles/zshrc.zsh ~/.zshrc
 ln -s -F ~/dev/dotfiles/tmux.conf ~/.tmux.conf
 
-#Change default shell to zsh
-chsh -s /bin/zsh
 
 #System Pref Settings
 
