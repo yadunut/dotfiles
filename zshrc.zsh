@@ -75,6 +75,7 @@ plugins=(
   git
   tmux
   go
+  shrink-path
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -108,3 +109,10 @@ fi
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+if [[ -z "$LC_ALL" ]]; then
+  export LC_ALL='en_US.UTF-8'
+fi
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"

@@ -63,6 +63,8 @@ if dein#load_state('~/.config/nvim/dein')
   call dein#add('SirVer/ultisnips')
   "Org-mode
   call dein#add('jceb/vim-orgmode')
+  "rails
+  call dein#add('tpope/vim-rails')
 
   "Required:
   call dein#end()

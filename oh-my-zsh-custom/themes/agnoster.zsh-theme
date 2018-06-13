@@ -188,7 +188,7 @@ prompt_hg() {
 
 # Dir: current working directory
 prompt_dir() {
-  prompt_segment blue black '%~'
+  prompt_segment blue black '$(shrink_path -f)'
 }
 
 # Virtualenv: current working virtualenv
@@ -222,8 +222,6 @@ build_prompt() {
   prompt_context
   prompt_dir
   prompt_git
-  prompt_bzr
-  prompt_hg
   prompt_end
   PROMPT+=' '
 }
