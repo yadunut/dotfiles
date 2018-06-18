@@ -87,32 +87,33 @@ pip3 install neovim
 
 
 #Clone my dotfiles into the proper directory
-git clone https://github.com/yadunut/dotfiles.git ~/dev/dotfiles
+DOTFILES = ~/dev/src/github.com/yadunut/dotfiles
+git clone https://github.com/yadunut/dotfiles.git $DOTFILES
 
 #Clone Tmux Plugin Manager into Proper directory
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 # Install oh my zsh
-export ZSH="$HOME/dev/dotfiles/oh-my-zsh"; sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+export ZSH="$HOME/dev/src/github.com/yadunut/dotfiles/oh-my-zsh"; sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 #Install Inconsolata for powerline
 wget -P ~/Library/Fonts https://github.com/powerline/fonts/raw/master/Inconsolata/Inconsolata%20for%20Powerline.otf
 
 #Make files directory to store files
-mkdir -p ~/dev/dotfiles/files
+mkdir -p $DOTFILES/files
 mkdir -p ~/.config/nvim/dein
 
 #Install Dein(Plugin Manager for vim)
-curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > ~/dev/dotfiles/files/installer.sh
-sh ~/dev/dotfiles/files/installer.sh ~/.config/nvim/dein
+curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > $DOTFILES/files/installer.sh
+sh $DOTFILES/files/installer.sh ~/.config/nvim/dein
 
 #Setup for deoplete-go
 go get -u github.com/nsf/gocode
 
 #symlink the appropriate files in the dotfiles folder
-ln -s -F ~/dev/dotfiles/nvim.vim  ~/.config/nvim/init.vim
-ln -s -F ~/dev/dotfiles/zshrc.zsh ~/.zshrc
-ln -s -F ~/dev/dotfiles/tmux.conf ~/.tmux.conf
+ln -s -F $DOTFILES/nvim.vim  ~/.config/nvim/init.vim
+ln -s -F $DOTFILES/zshrc.zsh ~/.zshrc
+ln -s -F $DOTFILES/tmux.conf ~/.tmux.conf
 
 
 #System Pref Settings
