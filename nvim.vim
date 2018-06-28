@@ -56,8 +56,6 @@ if dein#load_state('~/.config/nvim/dein')
   call dein#add('vim-airline/vim-airline-themes')
   "Tmux powerline
   call dein#add('edkolev/tmuxline.vim')
-  "Fuzzy File Finding
-  call dein#add('Shougo/denite.nvim')
   "Commenting
   call dein#add('scrooloose/nerdcommenter')
   "Snippets
@@ -67,6 +65,8 @@ if dein#load_state('~/.config/nvim/dein')
   "ruby
   "call dein#add('vim-ruby/vim-ruby')
   "call dein#add('fishbullet/deoplete-ruby')
+  "tmux
+  call dein#add('benmills/vimux')
 
 
   "Required:
@@ -96,8 +96,6 @@ let g:go_metalinter_autosave=1
 let g:go_gocode_unimported_packages=1
 
 let g:deoplete#enable_at_startup = 1
-"Sets gocode binary
-"let g:deoplete#sources#go#gocode_binary = '$GOPATH/bin/gocode'
 "Powerline Theme to use
 let g:airline_powerline_fonts = 0
 let g:airline_theme='base16_default'
@@ -108,6 +106,15 @@ let g:airline#extensions#tabline#enabled = 1
 
 "Ultisnips
 let g:UltiSnipsExpandTrigger="<C-s>"
+"Go
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+let g:go_alternate_mode = "vsplit"
+let g:go_fmt_command = "goimports"
+let g:go_highlight_variable_declarations = 1
 
 
 "--------------------------------------------------------------------------------
@@ -165,9 +172,15 @@ endfunction"}}}
 
 "Go Specific
 autocmd FileType go nmap <leader>b <Plug>(go-build)
-autocmd FileType go nmap <leader>r <Plug>(go-run)
 autocmd FileType go set tabstop=4
 autocmd FileType go set shiftwidth=4
+
+if exists('$TMUX')
+  autocmd FileType go nmap <leader>r :VimuxRunCommand("clear; go run ".bufname("%"))<CR>
+else
+  autocmd FileType go nmap <leader>r <Plug>(go-run)
+endif
+
 
 
 

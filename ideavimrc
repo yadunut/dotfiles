@@ -1,0 +1,8 @@
+imap jk <Esc>
+nnoremap ; :
+let mapleader = "\<Space>"
+nnoremap <Space>w :w<CR>
+nnoremap <Space>q :q<CR>
+nnoremap <Space>r :action GoFmtFileAction<CR>
+
+set surround

@@ -59,8 +59,6 @@ brew doctor
 brew tap caskroom/cask
 #VSCode
 brew cask install visual-studio-code
-#Firefox
-brew cask install firefox
 #Discord
 brew cask install discord
 #Google Chrome
@@ -94,10 +92,13 @@ git clone https://github.com/yadunut/dotfiles.git $DOTFILES
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 # Install oh my zsh
-export ZSH="$HOME/dev/src/github.com/yadunut/dotfiles/oh-my-zsh"; sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+git clone https://github.com/robbyrussell/oh-my-zsh.git $DOTFILES/oh-my-zsh
+cp ~/.zshrc ~/.zshrc.orig
 
 #Install Inconsolata for powerline
-wget -P ~/Library/Fonts https://github.com/powerline/fonts/raw/master/Inconsolata/Inconsolata%20for%20Powerline.otf
+wget ~/Library/Fonts https://github.com/powerline/fonts/raw/master/Inconsolata/Inconsolata%20for%20Powerline.otf
+wget ~/Library/Fonts https://github.com/google/fonts/raw/master/ofl/inconsolata/Inconsolata-Bold.ttf
+wget  ~/Library/Fonts https://github.com/google/fonts/raw/master/ofl/inconsolata/Inconsolata-Regular.ttf
 
 #Make files directory to store files
 mkdir -p $DOTFILES/files
@@ -107,48 +108,12 @@ mkdir -p ~/.config/nvim/dein
 curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > $DOTFILES/files/installer.sh
 sh $DOTFILES/files/installer.sh ~/.config/nvim/dein
 
+
 #Setup for deoplete-go
 go get -u github.com/nsf/gocode
 
 #symlink the appropriate files in the dotfiles folder
-ln -s -F $DOTFILES/nvim.vim  ~/.config/nvim/init.vim
-ln -s -F $DOTFILES/zshrc.zsh ~/.zshrc
-ln -s -F $DOTFILES/tmux.conf ~/.tmux.conf
-
-
-#System Pref Settings
-
-# Set a faster keyboard repeat rate
-defaults write NSGlobalDomain KeyRepeat -int 2
-# Set a short delay until repeat
-defaults write NSGlobalDomain InitialKeyRepeat -int 20
-# require password immediately after sleep or screensaver
-defaults write com.apple.screensaver askForPassword -int 1
-defaults write com.apple.screensaver askForPasswordDelay -int 0
-# Disable Dashboard
-defaults write com.apple.dashboard mcx-disabled -bool true
-# Automatically hide and show the Dock
-defaults write com.apple.dock autohide -bool true
-# Change minimize/maximize window effect
-defaults write com.apple.dock mineffect -string "genie"
-
-# Bottom right screen corner → Desktop
-defaults write com.apple.dock wvous-br-corner -int 4
-defaults write com.apple.dock wvous-br-modifier -int 0
-
-# Finder: show status bar
-defaults write com.apple.finder ShowStatusBar -bool true
-
-# Finder: show path bar
-defaults write com.apple.finder ShowPathbar -bool true
-
-# Show the ~/Library folder
-chflags nohidden ~/Library
-
-for app in "Dock" "Finder" "SystemUIServer" "Terminal"; do
-	killall "${app}" > /dev/null 2>&1
-done
-
+sh $DOTFILES/osx-installer/link.sh
 
 #Messages for the user
 echo "Remember to set terminal font to Inconsolata for Powerline"
