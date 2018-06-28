@@ -99,11 +99,13 @@ let g:deoplete#enable_at_startup = 1
 "Sets gocode binary
 "let g:deoplete#sources#go#gocode_binary = '$GOPATH/bin/gocode'
 "Powerline Theme to use
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 0
 let g:airline_theme='base16_default'
 let g:airline_solarized_bg='dark'
+let g:tmuxline_powerline_separators = 0
 "Shows all buffers
 let g:airline#extensions#tabline#enabled = 1
+
 "Ultisnips
 let g:UltiSnipsExpandTrigger="<C-s>"
 
