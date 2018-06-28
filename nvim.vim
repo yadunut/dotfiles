@@ -42,6 +42,7 @@ if dein#load_state('~/.config/nvim/dein')
   "Add or remove your plugins here:
   "Autocompletion
   call dein#add('Shougo/deoplete.nvim')
+  call dein#add('Shougo/neco-syntax')
   "Golang autcompletion
   call dein#add('fatih/vim-go')
   call dein#add('zchee/deoplete-go', {'build': 'make'})
@@ -63,8 +64,10 @@ if dein#load_state('~/.config/nvim/dein')
   call dein#add('SirVer/ultisnips')
   "Org-mode
   call dein#add('jceb/vim-orgmode')
-  "rails
-  call dein#add('tpope/vim-rails')
+  "ruby
+  "call dein#add('vim-ruby/vim-ruby')
+  "call dein#add('fishbullet/deoplete-ruby')
+
 
   "Required:
   call dein#end()
