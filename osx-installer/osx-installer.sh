@@ -36,7 +36,7 @@ brew upgrade
 brew doctor
 
 #Terminal Multiplexer
-brew install tmux
+brew install tmux --with-utf8proc
 #Better Vim
 brew install neovim
 #Similar to curl

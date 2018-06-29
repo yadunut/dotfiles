@@ -20,13 +20,10 @@ set shiftwidth=2
 
 set hidden
 
-
 "--------------------------------------------------------------------------------
 "------------------------------------Plugins-------------------------------------
 "--------------------------------------------------------------------------------
-if &compatible
-  set nocompatible
-endif
+set nocompatible
 
 "Required:
 set runtimepath+=~/.config/nvim/dein/repos/github.com/Shougo/dein.vim
@@ -91,11 +88,8 @@ syntax enable
 "---------------------------------Plugin Config----------------------------------
 "--------------------------------------------------------------------------------
 "Deoplete
-let g:go_fmt_command="goimports"
-let g:go_metalinter_autosave=1
-let g:go_gocode_unimported_packages=1
-
 let g:deoplete#enable_at_startup = 1
+
 "Powerline Theme to use
 let g:airline_powerline_fonts = 0
 let g:airline_theme='base16_default'
@@ -114,7 +108,9 @@ let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 let g:go_alternate_mode = "vsplit"
 let g:go_fmt_command = "goimports"
-let g:go_highlight_variable_declarations = 1
+let g:go_gocode_unimported_packages=1
+"NerdTree
+let NERDTreeHighlightCursorline = 0
 
 
 "--------------------------------------------------------------------------------
@@ -177,6 +173,7 @@ autocmd FileType go set shiftwidth=4
 
 if exists('$TMUX')
   autocmd FileType go nmap <leader>r :VimuxRunCommand("clear; go run ".bufname("%"))<CR>
+  autocmd FileType go nmap <leader>m :VimuxRunCommand("clear; make")<CR>
 else
   autocmd FileType go nmap <leader>r <Plug>(go-run)
 endif
