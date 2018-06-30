@@ -72,6 +72,8 @@ let g:go_gocode_unimported_packages=1
 let NERDTreeHighlightCursorline = 0
 " Tmuxline
 let g:tmuxline_powerline_separators = 0
+"vim-airline tabline
+let g:airline#extensions#tabline#enabled = 1
 
 " Keybinds
 "
