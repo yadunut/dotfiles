@@ -42,6 +42,8 @@ if dein#load_state('/Users/yadunandprem/.config/nvim/dein')
   call dein#add('vim-airline/vim-airline-themes')
   " Tmuxline
   call dein#add('edkolev/tmuxline.vim')
+  "Vim tmux integration
+  call dein#add('benmills/vimux')
 
 
   call dein#end()
@@ -95,6 +97,8 @@ nnoremap <Leader>w :w<CR>
 nnoremap <Leader>q :q<CR>
 " Open NerdTree
 nnoremap <Leader>t :NERDTreeToggle<CR>
+" Vimux Config
+let g:VimuxOrientation = "h"
 
 " Useful functions
 "
@@ -122,4 +126,11 @@ vmap <Leader>p "*p
 autocmd FileType go nmap <leader>b <Plug>(go-build)
 autocmd FileType go set tabstop=4
 autocmd FileType go set shiftwidth=4
+
+if exists('$TMUX')
+    autocmd FileType go nmap <leader>r :w<CR>:VimuxRunCommand("clear; go run ".bufname("%"))<CR>
+    autocmd FileType go nmap <leader>m :w<CR>:VimuxRunCommand("clear; make dev")<CR>
+else
+    autocmd FileType go nmap <leader>r :w<CR><Plug>(go-run)
+endif
 
