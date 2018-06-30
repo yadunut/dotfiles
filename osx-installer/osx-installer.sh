@@ -35,9 +35,9 @@ brew update
 brew upgrade
 brew doctor
 
-#Terminal Multiplexer
+#terminal multiplexer
 brew install tmux --with-utf8proc
-#Better Vim
+#better vim
 brew install neovim
 #Similar to curl
 brew install wget
@@ -85,7 +85,7 @@ pip3 install neovim
 
 
 #Clone my dotfiles into the proper directory
-DOTFILES = ~/dev/src/github.com/yadunut/dotfiles
+DOTFILES=~/dev/src/github.com/yadunut/dotfiles
 git clone https://github.com/yadunut/dotfiles.git $DOTFILES
 
 #Clone Tmux Plugin Manager into Proper directory
