@@ -31,6 +31,7 @@ if dein#load_state('/Users/yadunandprem/.config/nvim/dein')
   call dein#add('scrooloose/nerdtree')
   " Autocompletion
   call dein#add('Shougo/deoplete.nvim')
+  call dein#add('autozimu/LanguageClient-neovim', {'rev': 'next', 'build': 'bash install.sh'})
   " Golang autcompletion
   call dein#add('fatih/vim-go')
   call dein#add('zchee/deoplete-go', {'build': 'make'})
@@ -74,8 +75,13 @@ let g:go_gocode_unimported_packages=1
 let NERDTreeHighlightCursorline = 0
 " Tmuxline
 let g:tmuxline_powerline_separators = 0
-"vim-airline tabline
+" vim-airline tabline
 let g:airline#extensions#tabline#enabled = 1
+" Language Client
+let g:LanguageClient_serverCommands = {
+    \ 'ruby': ['tcp://localhost:7658'],
+    \ }
+let g:LanguageClient_autoStop = 0
 
 " Keybinds
 "
@@ -112,7 +118,7 @@ function! s:check_back_space() abort "{{{
     return !col || getline('.')[col - 1]  =~ '\s'
 endfunction"}}}
 " Removes trailing whitepace on F5
-nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
+nnoremap <silent> <F6> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
 " Save Line to clipboard
 nmap <Leader>yy "*yy
 " Paste from clipboard
@@ -122,7 +128,7 @@ vmap <Leader>y "*y
 " Visual mode paste from clipboard
 vmap <Leader>p "*p
 
-"Go Specific
+" Go Specific
 autocmd FileType go nmap <leader>b <Plug>(go-build)
 autocmd FileType go set tabstop=4
 autocmd FileType go set shiftwidth=4
@@ -134,3 +140,12 @@ else
     autocmd FileType go nmap <leader>r :w<CR><Plug>(go-run)
 endif
 
+" Ruby specific
+if exists('$TMUX')
+    autocmd FileType ruby nmap <leader>r :w<CR>:VimuxRunCommand("clear; rake")<CR>
+endif
+
+" LanguageClient ruby specific
+autocmd FileType ruby nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+autocmd FileType ruby nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+autocmd FileType ruby nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
