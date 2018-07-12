@@ -45,6 +45,9 @@ if dein#load_state('/Users/yadunandprem/.config/nvim/dein')
   call dein#add('edkolev/tmuxline.vim')
   "Vim tmux integration
   call dein#add('benmills/vimux')
+  "Fuzzy finder
+  call dein#add('/usr/local/opt/fzf')
+  call dein#add('junegunn/fzf.vim')
 
 
   call dein#end()
@@ -127,6 +130,7 @@ nmap <Leader>p "+p
 vmap <Leader>y "*y
 " Visual mode paste from clipboard
 vmap <Leader>p "*p
+nmap <C-p> :Files<CR>
 
 " Go Specific
 autocmd FileType go nmap <leader>b <Plug>(go-build)

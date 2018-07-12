@@ -36,7 +36,7 @@ brew upgrade
 brew doctor
 
 #terminal multiplexer
-brew install tmux --with-utf8proc
+brew install tmux 
 #better vim
 brew install neovim
 #Similar to curl
@@ -50,6 +50,9 @@ brew install python
 brew install python3
 #zsh
 brew install zsh
+#github intgreation
+brew install hub
+
 
 #Doctor and cleanup to delete un-necessary files
 brew cleanup
@@ -93,7 +96,7 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 # Install oh my zsh
 git clone https://github.com/robbyrussell/oh-my-zsh.git $DOTFILES/oh-my-zsh
-cp ~/.zshrc ~/.zshrc.orig
+mv ~/.zshrc ~/.zshrc.orig
 
 #Install Inconsolata for powerline
 wget ~/Library/Fonts https://github.com/powerline/fonts/raw/master/Inconsolata/Inconsolata%20for%20Powerline.otf
@@ -107,6 +110,15 @@ mkdir -p ~/.config/nvim/dein
 #Install Dein(Plugin Manager for vim)
 curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > $DOTFILES/files/installer.sh
 sh $DOTFILES/files/installer.sh ~/.config/nvim/dein
+
+# Install haskell
+curl -sSL https://get.haskellstack.org/ | sh
+
+#Install zsh-git-prompt
+git clone https://github.com/yadunut/zsh-git-prompt $DOTFILES/zsh-git-prompt
+cd $DOTFILES/zsh-git-prompt
+stack setup
+stack build && stack install
 
 
 #Setup for deoplete-go

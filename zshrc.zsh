@@ -75,6 +75,7 @@ plugins=(
   tmux
   go
   shrink-path
+  rails
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -115,3 +116,9 @@ export LC_CTYPE=en_US.UTF-8
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
+
+source ~/dev/src/github.com/yadunut/zsh-git-prompt/zshrc.sh
+GIT_PROMPT_EXECUTABLE="haskell"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
