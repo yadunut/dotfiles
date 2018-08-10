@@ -71,7 +71,7 @@ let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
-let g:go_alternate_mode = "vsplit"
+let g:go_alternate_mode = "edit"
 let g:go_fmt_command = "goimports"
 let g:go_gocode_unimported_packages=1
 " NerdTree
@@ -136,6 +136,7 @@ nmap <C-p> :Files<CR>
 autocmd FileType go nmap <leader>b <Plug>(go-build)
 autocmd FileType go set tabstop=4
 autocmd FileType go set shiftwidth=4
+autocmd FileType go nmap <leader>u :w<CR><Plug>(go-test)
 
 if exists('$TMUX')
     autocmd FileType go nmap <leader>r :w<CR>:VimuxRunCommand("clear; go run ".bufname("%"))<CR>
