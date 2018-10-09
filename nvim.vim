@@ -45,10 +45,15 @@ if dein#load_state('/Users/yadunandprem/.config/nvim/dein')
   call dein#add('edkolev/tmuxline.vim')
   "Vim tmux integration
   call dein#add('benmills/vimux')
-  "Fuzzy finder
+  " Fuzzy finder
   call dein#add('/usr/local/opt/fzf')
   call dein#add('junegunn/fzf.vim')
-
+  " Vim Ruby
+  call dein#add('vim-ruby/vim-ruby')
+  " Vim Rails
+  call dein#add('tpope/vim-rails')
+  " Vim Slim 
+  call dein#add('slim-template/vim-slim')
 
   call dein#end()
   call dein#save_state()
@@ -148,7 +153,12 @@ endif
 " Ruby specific
 if exists('$TMUX')
     autocmd FileType ruby nmap <leader>r :w<CR>:VimuxRunCommand("clear; rake")<CR>
+    autocmd FileType ruby nmap <leader>m :w<CR>:VimuxRunCommand("clear;rspec .")<CR>
 endif
+
+autocmd FileType ruby set expandtab
+autocmd FileType ruby set shiftwidth=2
+autocmd FileType ruby set softtabstop=2
 
 " LanguageClient ruby specific
 autocmd FileType ruby nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
