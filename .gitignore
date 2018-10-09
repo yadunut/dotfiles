@@ -2,3 +2,4 @@ tmux-powerline/
 temp/
 files/
 oh-my-zsh/
+scripts/backup.sh
