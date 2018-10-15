@@ -3,3 +3,5 @@ temp/
 files/
 oh-my-zsh/
 scripts/backup.sh
+
+scripts/backup.log
