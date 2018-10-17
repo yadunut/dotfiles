@@ -49,6 +49,8 @@ function LC_maps()
         nnoremap <buffer> <silent> gd :call LanguageClient#textDocument_definition()<CR>
         nnoremap <buffer> <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
         nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+        " Sets column which shows errors on side to be open
+        set signcolumn=yes
     endif
 endfunction
 
