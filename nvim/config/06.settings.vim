@@ -6,3 +6,10 @@ let NERDTreeHighlightCursorline = 0
 let g:tmuxline_powerline_separators = 0
 " Vimux Config
 let g:VimuxOrientation = "h"
+" Ale config
+let g:ale_fixers = {
+            \ '*': ['remove_trailing_lines', 'trim_whitespace'],
+            \ 'cpp': ['clang-format'],
+            \ 'c': ['clang-format'],
+            \ }
+let g:ale_fix_on_save = 1

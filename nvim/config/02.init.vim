@@ -28,8 +28,8 @@ set shiftround
 set grepprg=ag\ --nogroup\ --nocolor
 
 " Set colors
-" set termguicolors
-set background=light
+set termguicolors
+colorscheme solarized8_dark_high
 
 " Allow unsaved files to lose focus
 set hidden
@@ -39,3 +39,5 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 
 " Set preview window height
 " set previewheight =5
+"
+autocmd Filetype c,cpp setlocal expandtab softtabstop=2 shiftwidth=2

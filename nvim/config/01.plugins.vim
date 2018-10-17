@@ -18,7 +18,7 @@ if dein#load_state('/Users/yadunandprem/.cache/dein')
   call dein#add('zchee/deoplete-jedi')
   call dein#add('autozimu/LanguageClient-neovim', {'rev': 'next', 'build': 'bash install.sh'})
   " Treeview
-  call dein#add('scrooloose/nerdtree') 
+  call dein#add('scrooloose/nerdtree')
   " Vim Powerline
   call dein#add('vim-airline/vim-airline')
   " Tmux Powerline
@@ -32,6 +32,10 @@ if dein#load_state('/Users/yadunandprem/.cache/dein')
   " Fuzzy file finding
   call dein#add('junegunn/fzf.vim')
   call dein#add('/usr/local/opt/fzf')
+  " Ale linter
+  call dein#add('w0rp/ale')
+  " Colortheme
+  call dein#add('lifepillar/vim-solarized8')
 
 
   " Required:
@@ -48,4 +52,3 @@ if dein#check_install()
 endif
 
 " End dein Scripts-------------------------
-

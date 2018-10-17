@@ -56,5 +56,4 @@ autocmd FileType * call LC_maps()
 
 if exists('$TMUX')
     autocmd FileType cpp nnoremap <leader>r :call VimuxRunCommand("./compile.sh " . bufname("%"))<CR>
-
 endif
