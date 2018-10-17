@@ -7,6 +7,7 @@ export PATH=$HOME/dev/src/github.com/flutter/bin:$PATH
 
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
+export DEV=$HOME/dev/src/github.com/yadunut
 
 # Private exports
 source ~/.exports

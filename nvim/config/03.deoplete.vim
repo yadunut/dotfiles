@@ -8,12 +8,13 @@ let g:deoplete_disable_auto_complete=1
 call deoplete#custom#source('_', 'disabled_syntaxes', ['Comment', 'String'])
 
 " Set sources
-let g:deoplete#sources = {}
-let g:deoplete#sources.python = ['jedi']
-let g:deoplete#sources.python3 = ['jedi']
-let g:deoplete#sources.vim = ['vim']
-let g:deoplete#sources.rust = ['LanguageClient']
-let g:deoplete#sources.c = ['LanguageClient']
-let g:deoplete#sources.cpp = ['LanguageClient']
-let g:deoplete#sources.javascript = ['LanguageClient']
-let g:deoplete#sources.ruby = ['LanguageClient']
+call deoplete#custom#option('sources', {
+            \ 'python': ['jedi'],
+            \ 'python3': ['jedi'],
+            \ 'rust' : ['LanguageClient'],
+            \ 'c' : ['LanguageClient'],
+            \ 'cpp' : ['LanguageClient'],
+            \ 'vim' : ['vim'],
+            \ 'ruby' : ['LanguageClient'],
+            \ 'javascript' : ['LanguageClient'],
+            \})

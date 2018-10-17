@@ -36,7 +36,11 @@ if dein#load_state('/Users/yadunandprem/.cache/dein')
   call dein#add('w0rp/ale')
   " Colortheme
   call dein#add('lifepillar/vim-solarized8')
-
+  " Commenting
+  call dein#add('scrooloose/nerdcommenter')
+  " vim-go
+  call dein#add('fatih/vim-go')
+  call dein#add('zchee/deoplete-go')
 
   " Required:
   call dein#end()

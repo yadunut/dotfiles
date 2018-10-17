@@ -20,6 +20,7 @@ filetype indent plugin on
 
 " Use spaces instead of tabs & set tabstop to 4 space
 set expandtab
+set tabstop     =4
 set softtabstop =4
 set shiftwidth  =4
 set shiftround
@@ -40,4 +41,4 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 " Set preview window height
 " set previewheight =5
 "
-autocmd Filetype c,cpp setlocal expandtab softtabstop=2 shiftwidth=2
+autocmd Filetype c,cpp,ruby setlocal expandtab softtabstop=2 shiftwidth=2
