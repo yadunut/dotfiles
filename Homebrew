@@ -4,9 +4,11 @@ automake
 bash
 bash-completion
 binutils
+clang-format
 cloc
 cmake
 coreutils
+cowsay
 cquery
 ctags
 dos2unix
@@ -77,8 +79,10 @@ libyaml
 libzip
 llvm
 lmdb
+lolcat
 lua
 luajit
+mas
 mpfr
 msgpack
 nasm
@@ -103,6 +107,7 @@ pv
 python
 python@2
 radare2
+ranger
 readline
 rsync
 ruby
