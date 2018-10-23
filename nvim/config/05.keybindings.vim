@@ -57,5 +57,5 @@ endfunction
 autocmd FileType * call LC_maps()
 
 if exists('$TMUX')
-    autocmd FileType cpp nnoremap <buffer> <leader>r :call VimuxRunCommand("rucppy " . bufname("%"))<CR>
+    autocmd FileType cpp nnoremap <buffer> <leader>r :call VimuxRunCommand("ekko " . bufname("%"))<CR>
 endif
