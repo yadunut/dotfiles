@@ -7,6 +7,11 @@
 
 set -eu -o pipefail
 
+# Source GPG password, rsync paths
+# Sets variables
+HOME="/Users/yadunandprem"
+source "$HOME/.duplicity/.env_variables.conf"
+
 function displayNotification() {
     echo "$1"
     osascript -e "display notification \"$1\" with title \"Backup\""
@@ -14,19 +19,27 @@ function displayNotification() {
 
 function finish() {
     local exit_value=$?
+    local date="$(date +'%a %I:%M %p')"
     case $exit_value in
     0)
-        displayNotification "Successfully backed up"
+        displayNotification "Successfully backed up at $date"
         rm /tmp/backup.log
         ;;
     2)
-        displayNotification "Failed. Not connected to internet"
+        displayNotification "Failed. Not connected to internet at $date"
         ;;
     *)
-        displayNotification "Failed with Exit code $exit_value"
+        displayNotification "Failed with Exit code $exit_value at $date"
         ;;
 
     esac
+
+    unset GPG_KEY
+    unset HOME_SERVER
+    unset SERVER
+    unset HOME_SSID
+    unset PASSPHRASE
+    unset SIGN_PASSPHRASE
 }
 
 trap finish EXIT
@@ -35,10 +48,6 @@ if ! (ping -q -c 1 -W 1 8.8.8.8 &>/dev/null); then
     # No internet connection
     exit 2
 fi
-
-# Source GPG password, rsync paths
-HOME="/Users/yadunandprem"
-source "$HOME/.duplicity/.env_variables.conf"
 
 # I have an issue where I can't SSH to server using its domain name if I'm in the same network
 # eg. I can SSH to server using username@ip but i cant ssh to the same server using @username@domain.com
@@ -66,10 +75,3 @@ fi
     --exclude '**' \
     ~ \
     "$RSYNC"
-
-unset GPG_KEY
-unset HOME_SERVER
-unset SERVER
-unset HOME_SSID
-unset PASSPHRASE
-unset SIGN_PASSPHRASE
