@@ -1,9 +1,39 @@
 #!/bin/bash
 
+# Exit Codes
+# 0  -  Successfully backed up
+# 2  -  Failed. No Internet connection
+# *  -  Errors from duplicity
+
+set -eu -o pipefail
+
+function displayNotification() {
+    echo "$1"
+    osascript -e "display notification \"$1\" with title \"Backup\""
+}
+
+function finish() {
+    local exit_value=$?
+    case $exit_value in
+    0)
+        displayNotification "Successfully backed up"
+        rm /tmp/backup.log
+        ;;
+    2)
+        displayNotification "Failed. Not connected to internet"
+        ;;
+    *)
+        displayNotification "Failed with Exit code $exit_value"
+        ;;
+
+    esac
+}
+
+trap finish EXIT
+
 if ! (ping -q -c 1 -W 1 8.8.8.8 &>/dev/null); then
     # No internet connection
-    echo "Not connected to internet"
-    exit 1
+    exit 2
 fi
 
 # Source GPG password, rsync paths
@@ -26,6 +56,7 @@ fi
 
 /usr/local/bin/duplicity \
     --verbosity info \
+    --log-file "/tmp/backup.log" \
     --encrypt-key "$GPG_KEY" \
     --full-if-older-than 7D \
     --include ~/dev \
@@ -36,9 +67,9 @@ fi
     ~ \
     "$RSYNC"
 
-env --unset GPG_KEY
-env --unset HOME_SERVER
-env --unset SERVER
-env --unset HOME_SSID
-env --unset PASSPHRASE
-env --unset SIGN_PASSPHRASE
+unset GPG_KEY
+unset HOME_SERVER
+unset SERVER
+unset HOME_SSID
+unset PASSPHRASE
+unset SIGN_PASSPHRASE
