@@ -1,20 +1,44 @@
 #!/bin/bash
-case $1 in
-home)
-    RSYNC=rsync://yadunut@10.0.0.4//mnt/md0/backups/macbookpro
-    ;;
-*)
-    RSYNC=rsync://yadunut@home.yadunut.com//mnt/md0/backups/macbookpro
-    ;;
-esac
 
-/usr/local/bin/duplicity incr \
-    --encrypt-key 940AFD10 \
-    --verbosity 9 \
+if ! (ping -q -c 1 -W 1 8.8.8.8 &>/dev/null); then
+    # No internet connection
+    echo "Not connected to internet"
+    exit 1
+fi
+
+# Source GPG password, rsync paths
+HOME="/Users/yadunandprem"
+source "$HOME/.duplicity/.env_variables.conf"
+
+# I have an issue where I can't SSH to server using its domain name if I'm in the same network
+# eg. I can SSH to server using username@ip but i cant ssh to the same server using @username@domain.com
+# The following checks whether I'm at home, and uses the correct SSH Params
+SSID="$(
+    /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I |
+        awk '/ SSID/ {print substr($0, index($0, $2))}'
+)"
+
+if [[ "$SSID" == "$HOME_SSID" ]]; then
+    RSYNC="$HOME_SERVER"
+else
+    RSYNC="$SERVER"
+fi
+
+/usr/local/bin/duplicity \
+    --verbosity info \
+    --encrypt-key "$GPG_KEY" \
+    --full-if-older-than 7D \
     --include ~/dev \
     --include ~/Desktop \
     --include ~/Documents \
     --include ~/Downloads \
     --exclude '**' \
     ~ \
-    $RSYNC
+    "$RSYNC"
+
+env --unset GPG_KEY
+env --unset HOME_SERVER
+env --unset SERVER
+env --unset HOME_SSID
+env --unset PASSPHRASE
+env --unset SIGN_PASSPHRASE
