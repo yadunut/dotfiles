@@ -12,6 +12,7 @@ let g:ale_fixers = {
             \ 'cpp': ['clang-format'],
             \ 'c': ['clang-format'],
             \ 'ruby': ['rubocop'],
+            \ 'sh': ['shfmt'],
             \ }
 let g:ale_fix_on_save = 1
 " NERDComment Settings

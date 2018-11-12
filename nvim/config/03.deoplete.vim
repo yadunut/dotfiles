@@ -17,4 +17,5 @@ call deoplete#custom#option('sources', {
             \ 'vim' : ['vim'],
             \ 'ruby' : ['LanguageClient'],
             \ 'javascript' : ['LanguageClient'],
+            \ 'sh' : ['LanguageClient'],
             \})

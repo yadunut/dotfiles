@@ -123,3 +123,4 @@ GIT_PROMPT_EXECUTABLE="haskell"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 eval $(thefuck --alias)
 
+fpath=(/usr/local/share/zsh-completions $fpath)

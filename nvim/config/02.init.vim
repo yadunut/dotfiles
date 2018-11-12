@@ -42,3 +42,5 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 " set previewheight =5
 "
 autocmd Filetype c,cpp,ruby setlocal expandtab softtabstop=2 shiftwidth=2
+
+set foldmethod=marker

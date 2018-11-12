@@ -40,7 +40,6 @@ if dein#load_state('/Users/yadunandprem/.cache/dein')
   call dein#add('scrooloose/nerdcommenter')
   " vim-go
   call dein#add('fatih/vim-go')
-  call dein#add('zchee/deoplete-go')
 
   " Required:
   call dein#end()
