@@ -101,7 +101,6 @@ MAS_APPS=(
 # }}}
 
 # Setup {{{
-
 # Function to clean up code
 function finish() {
     exit_value=$?
@@ -147,7 +146,7 @@ done 2>/dev/null &
 
 # }}}
 
-Brew and mas installation {{{
+# Brew and mas installation {{{
 if [[ $(command -v brew) ]]; then
     echo "Brew is installed"
 else
@@ -162,7 +161,7 @@ for package in "${BREW_PACKAGES[@]}"; do
         echo "Installed $package"
     else
         echo "Failed to install $package"
-        echo "Failed to install $package" >>"$ERROR_PATH"
+        echo "Failed to install $package" >>$ERROR_PATH
     fi
 done
 
@@ -171,7 +170,7 @@ for app in "${CASK_PACKAGES[@]}"; do
         echo "Installed $app"
     else
         echo "Failed to install $app"
-        echo "Failed to install $app" >>"$ERROR_PATH"
+        echo "Failed to install $app" >>$ERROR_PATH
     fi
 done
 
@@ -203,53 +202,45 @@ for app in "${MAS_APPS[@]}"; do
         echo "Installed $app"
     else
         echo "Failed to install $app"
-        echo "Failed to install $app" >>"$ERROR_PATH"
+        echo "Failed to install $app" >>$ERROR_PATH
     fi
 done
 
 if ! brew doctor; then
     echo "brew doctor failed"
-    echo "brew doctor failed" >>"$ERROR_PATH"
+    echo "brew doctor failed" >>$ERROR_PATH
 fi
 
 if ! brew cleanup; then
     echo "brew cleanup failed"
-    echo "brew cleanup failed" >>"$ERROR_PATH"
+    echo "brew cleanup failed" >>$ERROR_PATH
 fi
 
 if ! brew prune; then
     echo "brew prune failed"
-    echo "brew prune failed" >>"$ERROR_PATH"
+    echo "brew prune failed" >>$ERROR_PATH
 fi
 
 echo "Finished installing apps"
 # }}}
 
 # # Clone and symlink repo {{{
-# mkdir -p "$TMP_DIR"
+mkdir -p $TMP_DIR
 
 git clone --recurse-submodules https://github.com/yadunut/dotfiles $DOTFILES
-cd "$DOTFILES"
+cd $DOTFILES
 git submodule update --remote
 
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-
-wget ~/Library/Fonts https://github.com/google/fonts/raw/master/ofl/inconsolata/Inconsolata-Bold.ttf
-wget ~/Library/Fonts https://github.com/google/fonts/raw/master/ofl/inconsolata/Inconsolata-Regular.ttf
-
-curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh >"$TMP_DIR/installer.sh"
-mkdir -p ~/.config/nvim/dein
-sh "$TMP_DIR/installer.sh" ~/.config/nvim/dein
-
-ln -s -F "$DOTFILES/nvim" "~/.config/"
-ln -s -F "$DOTFILES/zshrc.zsh" "~/.zshrc"
-ln -s -F "$DOTFILES/tmux.conf" "~/.tmux.conf"
-ln -s -F "$DOTFILES/ideavimrc" "~/.ideavimrc"
-ln -s -F "$DOTFILES/alacritty.yml" "~/.config/alacritty/alacritty.yml"
+ln -s -F $DOTFILES/nvim ~/.config/
+ln -s -F $DOTFILES/zshrc.zsh ~/.zshrc
+ln -s -F $DOTFILES/tmux.conf ~/.tmux.conf
+ln -s -F $DOTFILES/ideavimrc ~/.ideavimrc
+ln -s -F $DOTFILES/alacritty.yml ~/.config/alacritty/alacritty.yml
 
 # }}}
 
 # Other Installation {{{
+echo "Installing rust"
 if [[ $(command -v rustup) ]]; then
     rustup install stable
     rustup component add rustfmt-preview
@@ -257,14 +248,25 @@ if [[ $(command -v rustup) ]]; then
     rustup component add clippy-preview
 else
     echo "Rust not installed"
-    echo "Rust not installed" >>"$ERROR_PATH"
+    echo "Rust not installed" >>$ERROR_PATH
 fi
 
+echo "Installing rvm"
 gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
 \curl -sSL https://get.rvm.io | bash -s stable --ruby
 source ~/.rvm/scripts/rvm
 rvm install 2.5.1
 rvm --default use 2.5.1
+
+echo "Installing inconsolata"
+brew tap homebrew/cask-fonts
+brew cask install font-inconsolata
+
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh >$TMP_DIR/installer.sh
+mkdir -p ~/.config/nvim/dein
+sh $TMP_DIR/installer.sh ~/.config/nvim/dein
 
 # }}}
 
