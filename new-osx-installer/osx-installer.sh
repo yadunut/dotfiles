@@ -41,6 +41,7 @@ BREW_PACKAGES=(
     "rsync" # rsync
     "rustup" # Rust
     "sqlmap" # SQL Attack
+    "stack" # Haskell
     "the_silver_searcher" # adds ag, a better find command
     "tmux" # Terminal Multiplexer
     "tree" # Tree view of directories
@@ -267,6 +268,11 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh >$TMP_DIR/installer.sh
 mkdir -p ~/.config/nvim/dein
 sh $TMP_DIR/installer.sh ~/.config/nvim/dein
+
+git clone https://github.com/olivierverdier/zsh-git-prompt.git $DOTFILES
+cd $DOTFILES/zsh-git-prompt
+stack setup
+stack build && stack install
 
 # }}}
 
