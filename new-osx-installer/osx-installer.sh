@@ -14,6 +14,7 @@ DOTFILES="$PROJECT_DIR/github.com/yadunut/dotfiles"
 BREW_PACKAGES=(
     "bash"
     "bash-completion"
+    "bat"
     "clang-format" # C/c++ formatting
     "cloc" # Count lines of code
     "cquery --build-from-source" # C autocompletion engine
@@ -273,6 +274,14 @@ git clone https://github.com/olivierverdier/zsh-git-prompt.git $DOTFILES
 cd $DOTFILES/zsh-git-prompt
 stack setup
 stack build && stack install
+
+cd $TMP_DIR
+git clone https://github.com/jwilm/alacritty.git
+cd alacritty
+rustup override set stable
+rustup update stable
+make app
+cp -r target/release/osx/Alacritty.app /Applications/
 
 # }}}
 
