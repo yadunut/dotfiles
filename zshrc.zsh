@@ -122,4 +122,3 @@ GIT_PROMPT_EXECUTABLE="haskell"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 eval $(thefuck --alias)
-function gi() { curl -L -s https://www.gitignore.io/api/$@ ;}

@@ -4,3 +4,4 @@ function vf() {
   [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
 }
 
+function gi() { curl -L -s https://www.gitignore.io/api/$@ ;}
