@@ -139,18 +139,6 @@ function install_git_prompt() {
 }
 # }}}
 
-# Install Alacritty {{{
-function install_alacritty() {
-    cd "$TMP_DIR"
-    git clone https://github.com/jwilm/alacritty.git
-    cd alacritty
-    rustup override set stable
-    rustup update stable
-    make app
-    cp -r target/release/osx/Alacritty.app /Applications/
-}
-# }}}
-
 # Setup git {{{
 function setup_git() {
     git config --global user.name "Yadunand Prem"
@@ -233,7 +221,6 @@ function all() {
     install_tpm
     install_dein
     install_git_prompt
-    install_alacritty
     setup_git
     setup_system_prefs
 
