@@ -16,6 +16,7 @@ if dein#load_state('/Users/yadunandprem/.cache/dein')
   " Autocompletion
   call dein#add('Shougo/deoplete.nvim')
   call dein#add('zchee/deoplete-jedi')
+  call dein#add('zchee/deoplete-go', {'build': 'make'})
   call dein#add('autozimu/LanguageClient-neovim', {'rev': 'next', 'build': 'bash install.sh'})
   " Treeview
   call dein#add('scrooloose/nerdtree')

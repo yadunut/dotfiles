@@ -17,3 +17,5 @@ let g:ale_fixers = {
 let g:ale_fix_on_save = 1
 " NERDComment Settings
 let g:NERDSpaceDelims = 1
+
+let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'

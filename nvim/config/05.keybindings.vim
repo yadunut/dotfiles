@@ -58,4 +58,5 @@ autocmd FileType * call LC_maps()
 
 if exists('$TMUX')
     autocmd FileType cpp nnoremap <buffer> <leader>r :call VimuxRunCommand("ekko " . bufname("%"))<CR>
+    autocmd Filetype go nnoremap <buffer> <leader>r :call VimuxRunCommand("go run " . bufname("%"))<CR>
 endif
