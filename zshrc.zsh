@@ -115,9 +115,9 @@ export LANG=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
-
 source /Users/yadunandprem/dev/src/github.com/olivierverdier/zsh-git-prompt/zshrc.sh
 GIT_PROMPT_EXECUTABLE="haskell"
+
+eval "$(rbenv init -)"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

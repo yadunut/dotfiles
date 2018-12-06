@@ -41,6 +41,8 @@ if dein#load_state('/Users/yadunandprem/.cache/dein')
   call dein#add('scrooloose/nerdcommenter')
   " vim-go
   call dein#add('fatih/vim-go')
+  " gotests
+  call dein#add('buoto/gotests-vim')
 
   " Required:
   call dein#end()

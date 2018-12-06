@@ -10,7 +10,7 @@ DOTFILES="$PROJECT_DIR/github.com/yadunut/dotfiles"
 
 # Clean up tmp dir on exit {{{
 function finish() {
-    local exit_value=$?
+    echo "Finished"
 }
 
 trap finish EXIT
@@ -109,6 +109,7 @@ function install_rvm() {
     log "Installing rvm"
     gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
     \curl -sSL https://get.rvm.io | bash -s stable --ruby
+    # shellcheck source=/dev/null
     source "$HOME/.rvm/scripts/rvm"
     rvm install 2.5.1
     rvm --default use 2.5.1
@@ -185,7 +186,7 @@ function setup_system_prefs() {
 function all() {
     # Ask for xcode installation {{{
     while true; do
-        read -p "Have you installed XCode? " input
+        read -r -p "Have you installed XCode? " input
         case $input in
         [yY] | [yY]es)
             break
@@ -229,7 +230,7 @@ function all() {
 
     # Restart computer
     for i in {5..1}; do
-        printf "Restarting computer in $i...\\r"
+        printf "Restarting computer in %s...\\r" $i
         sleep 1
     done
     sudo reboot
