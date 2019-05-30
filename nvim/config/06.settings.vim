@@ -19,3 +19,5 @@ let g:ale_fix_on_save = 1
 let g:NERDSpaceDelims = 1
 
 let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
+
+let g:vim_markdown_new_list_item_indent = 2

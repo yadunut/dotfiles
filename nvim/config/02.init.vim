@@ -30,7 +30,7 @@ set grepprg=ag\ --nogroup\ --nocolor
 
 " Set colors
 set termguicolors
-colorscheme solarized8_dark_high
+" colorscheme solarized8_dark_high
 
 " Allow unsaved files to lose focus
 set hidden
@@ -41,6 +41,10 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 " Set preview window height
 " set previewheight =5
 "
-autocmd Filetype c,cpp,ruby setlocal expandtab softtabstop=2 shiftwidth=2
+autocmd Filetype cpp,ruby,markdown setlocal expandtab softtabstop=2 shiftwidth=2
 
 set foldmethod=marker
+set nofoldenable
+
+" Disable swaps
+set noswapfile

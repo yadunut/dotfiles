@@ -35,14 +35,19 @@ if dein#load_state('/Users/yadunandprem/.cache/dein')
   call dein#add('/usr/local/opt/fzf')
   " Ale linter
   call dein#add('w0rp/ale')
-  " Colortheme
-  call dein#add('lifepillar/vim-solarized8')
   " Commenting
   call dein#add('scrooloose/nerdcommenter')
   " vim-go
   call dein#add('fatih/vim-go')
   " gotests
   call dein#add('buoto/gotests-vim')
+
+  " Markdown
+  call dein#add('godlygeek/tabular')
+  call dein#add('plasticboy/vim-markdown')
+
+  " Dart
+  call dein#add('dart-lang/dart-vim-plugin')
 
   " Required:
   call dein#end()
