@@ -31,6 +31,7 @@ if dein#load_state('/Users/yadunandprem/.cache/dein')
 
     call dein#add('dart-lang/dart-vim-plugin')          " Dart syntax highlighting
 
+    " call dein#add('fatih/vim-go')                       " Go Syntax and otehr functions
 
     " Required:
     call dein#end()
@@ -61,6 +62,7 @@ call deoplete#custom#option({
             \ },
             \ })
 call deoplete#custom#source('ale', 'rank', 1000)
+call deoplete#custom#source('ale', 'mark', 'A')
 call deoplete#custom#source('ale', 'min_pattern_length', 0)
 
 " Ale
@@ -72,11 +74,14 @@ let g:ale_fixers = {
             \ 'sh': ['shfmt'],
             \ 'dart': ['dartfmt'],
             \ 'go': ['gofmt', 'goimports'],
+            \ 'javascript': ['prettier'],
+            \ 'css': ['prettier'],
             \ }
 let g:ale_linters = {
             \ 'go': ['gopls'],
             \ 'dart': ['language_server'],
             \ }
+            " \ 'ruby': ['solargraph'],
 let g:ale_fix_on_save = 1
 " let g:ale_sign_column_always = 1
 " let g:ale_sign_error = '❌'
@@ -163,7 +168,7 @@ function ALELSPMappings()
   let l:lsp_found=0
   for l:linter in ale#linter#Get(&filetype) | if !empty(l:linter.lsp) | let l:lsp_found=1 | endif | endfor
   if (l:lsp_found)
-    nnoremap <buffer> <C-]> :ALEGoToDefinition<CR>
+    nnoremap <buffer> gd :ALEGoToDefinition<CR>
     nnoremap <buffer> <C-^> :ALEFindReferences<CR>
   endif
 endfunction

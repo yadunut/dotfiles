@@ -14,10 +14,11 @@ POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
 POWERLEVEL9K_SHORTEN_DELIMITER=""
 POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_right"
 
-# Customize to your needs...
 source ~/.purepower
 
 eval "$(rbenv init -)"
+eval "$(direnv hook zsh)"
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 for file in $HOME/dev/src/github.com/yadunut/dotfiles/zsh/*; do
