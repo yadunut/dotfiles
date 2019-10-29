@@ -18,6 +18,8 @@ source ~/.purepower
 
 eval "$(rbenv init -)"
 eval "$(direnv hook zsh)"
+eval "$(thefuck --alias)"
+path+=(/Users/yadunandprem/dev/src/github.com/yadunut/to)
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 

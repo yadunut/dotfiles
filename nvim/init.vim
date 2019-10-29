@@ -31,6 +31,8 @@ if dein#load_state('/Users/yadunandprem/.cache/dein')
 
     call dein#add('dart-lang/dart-vim-plugin')          " Dart syntax highlighting
 
+    call dein#add('chr4/nginx.vim')
+
     " call dein#add('fatih/vim-go')                       " Go Syntax and otehr functions
 
     " Required:
@@ -65,11 +67,12 @@ call deoplete#custom#source('ale', 'rank', 1000)
 call deoplete#custom#source('ale', 'mark', 'A')
 call deoplete#custom#source('ale', 'min_pattern_length', 0)
 
+            " \ 'cpp': ['clang-format'],
+            " \ 'c': ['clang-format'],
+
 " Ale
 let g:ale_fixers = {
             \ '*': ['remove_trailing_lines', 'trim_whitespace'],
-            \ 'cpp': ['clang-format'],
-            \ 'c': ['clang-format'],
             \ 'ruby': ['rubocop'],
             \ 'sh': ['shfmt'],
             \ 'dart': ['dartfmt'],
@@ -80,8 +83,11 @@ let g:ale_fixers = {
 let g:ale_linters = {
             \ 'go': ['gopls'],
             \ 'dart': ['language_server'],
+            \ 'ruby': ['solargraph'],
+            \ 'javascript' : ['tsserver'],
+            \ 'cpp': ['cquery'],
+            \ 'c': ['cquery'],
             \ }
-            " \ 'ruby': ['solargraph'],
 let g:ale_fix_on_save = 1
 " let g:ale_sign_column_always = 1
 " let g:ale_sign_error = '❌'
