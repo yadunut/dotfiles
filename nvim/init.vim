@@ -5,7 +5,6 @@ endif
 " Required:
 set runtimepath+=/Users/yadunandprem/.cache/dein/repos/github.com/Shougo/dein.vim
 
-" Required:
 if dein#load_state('/Users/yadunandprem/.cache/dein')
     call dein#begin('/Users/yadunandprem/.cache/dein')
 
@@ -13,10 +12,7 @@ if dein#load_state('/Users/yadunandprem/.cache/dein')
     " Required:
     call dein#add('/Users/yadunandprem/.cache/dein/repos/github.com/Shougo/dein.vim')
 
-
-    call dein#add('Shougo/deoplete.nvim')               " Async autocomplete
-
-    call dein#add('w0rp/ale')                           " Async Linting engine
+    call dein#add('neoclide/coc.nvim', {'merge':0,'rev': 'release'})
 
     call dein#add('scrooloose/nerdtree')                " Treeview
     call dein#add('scrooloose/nerdcommenter')           " Commenting
@@ -26,14 +22,10 @@ if dein#load_state('/Users/yadunandprem/.cache/dein')
 
     call dein#add('vim-airline/vim-airline')            " Vim statusline
     call dein#add('vim-airline/vim-airline-themes')     " Statusline themes
-    call dein#add('altercation/vim-colors-solarized')   " Vim Solarized Colorscheme
     call dein#add('edkolev/tmuxline.vim')               " Tmux statusline
-
-    call dein#add('dart-lang/dart-vim-plugin')          " Dart syntax highlighting
-
-    call dein#add('chr4/nginx.vim')
-
-    " call dein#add('fatih/vim-go')                       " Go Syntax and otehr functions
+    call dein#add('dracula/vim')			" Darcula Theme
+    call dein#add('maxmellon/vim-jsx-pretty')           " JSX
+    call dein#add('sheerun/vim-polyglot')               " Syntax highlighting
 
     " Required:
     call dein#end()
@@ -48,68 +40,71 @@ if dein#check_install()
     call dein#install()
 endif
 
-" End dein Scripts-------------------------
-
-" Plugin Settings {{{
-" Deoplete
-let g:deoplete#enable_at_startup = 1
-
-call deoplete#custom#option({
-            \ 'auto_complete': v:true,
-            \ 'auto_complete_delay': 1,
-            \ 'camel_case': v:true,
-            \ 'sources': {
-            \ '_': ['ale','buffer', 'file'],
-            \ 'dart': ['ale'],
-            \ },
-            \ })
-call deoplete#custom#source('ale', 'rank', 1000)
-call deoplete#custom#source('ale', 'mark', 'A')
-call deoplete#custom#source('ale', 'min_pattern_length', 0)
-
-            " \ 'cpp': ['clang-format'],
-            " \ 'c': ['clang-format'],
-
-" Ale
-let g:ale_fixers = {
-            \ '*': ['remove_trailing_lines', 'trim_whitespace'],
-            \ 'ruby': ['rubocop'],
-            \ 'sh': ['shfmt'],
-            \ 'dart': ['dartfmt'],
-            \ 'go': ['gofmt', 'goimports'],
-            \ 'javascript': ['prettier'],
-            \ 'css': ['prettier'],
-            \ }
-let g:ale_linters = {
-            \ 'go': ['gopls'],
-            \ 'dart': ['language_server'],
-            \ 'ruby': ['solargraph'],
-            \ 'javascript' : ['tsserver'],
-            \ 'cpp': ['cquery'],
-            \ 'c': ['cquery'],
-            \ }
-let g:ale_fix_on_save = 1
-" let g:ale_sign_column_always = 1
-" let g:ale_sign_error = '❌'
-let g:ale_sign_warning = '⚠️'
-
-" Airline
-let g:airline_theme='solarized'
-let g:airline_solarized_bg='dark'
-let g:airline#extensions#ale#enabled = 1
-let g:airline#extensions#tabline#enabled = 1
+" Plugin Settings
 
 " Tmuxline
-let g:tmuxline_powerline_separators = 0
+let g:tmuxline_powerline_separators = 1
+
+" Vim Airline
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme='dracula'
+let g:airline_powerline_fonts = 1
+
 
 " NerdCommenter
 let g:NERDSpaceDelims = 1
 let g:NERDCompactSexyComs = 1
 
+" Fzf
+let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 
-" Keybinds----------------------
-" Set leader key to space
-let mapleader = "\<Space>"
+
+" Set Colorscheme
+colorscheme dracula
+
+" settings
+
+set nobackup		" Don't create backups when overwriting files
+set nowritebackup	" Don't create backups when overwriting files
+
+
+set updatetime=300	" Swapfile written to disk every 300ms
+
+set shortmess+=c	" don't give |ins-completion-menu| messages.
+
+" Search Options
+set incsearch
+set ignorecase
+set smartcase
+
+set cmdheight=2		" Better display for messages
+set signcolumn=yes 	" always show signcolumns
+
+set number
+set relativenumber
+
+set ruler
+set autowrite
+set hidden 		" Allow moving to unsaved files
+
+set expandtab " Use spaces instead of tabs 👿
+set autoindent
+set tabstop=8
+set softtabstop=2
+set shiftwidth=2
+set smarttab
+
+set wildignorecase
+
+set noswapfile
+
+set termguicolors
+
+
+
+
+" Keybinds
+
 " Better escape
 imap jk <Esc>
 " Map Semicolon to colon
@@ -120,62 +115,129 @@ nnoremap <C-n> :bnext<CR>
 nnoremap <C-p> :bprevious<CR>
 nnoremap <C-b> :bdelete<CR>
 
-" File operation
-nnoremap <Leader>w :w<CR>
-nnoremap <Leader>q :q<CR>
-nnoremap <Leader>t :NERDTreeToggle<CR>
+nnoremap <space>t :NERDTreeToggle<CR>
 nnoremap <C-f> :Files<CR>
 
-" Clipboard operations
-nmap <Leader>yy "*yy
-nmap <Leader>p "+p
-vmap <Leader>y "+y
+" clipboard operations
+nmap <leader>yy "*yy
+nmap <leader>p "+p
+vmap <leader>y "+y
 
-" Commenting
+" Remove trailing space
+nnoremap <leader>tr :call TrimWhiteSpace() <CR>
 
 
-" Options-------------------
-" Search options
-set incsearch
-set ignorecase
-set smartcase
 
-" Color options
-colorscheme solarized
-set background=dark
+" Tab for autocompletion
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-" Tab settings
-set autoindent
-set tabstop=8
-set softtabstop=4
-set expandtab " Use spaces instead of tabs 👿
-set shiftwidth=4
-set smarttab
+" C-Space to trigger completion
+inoremap <silent><expr> <c-space> coc#refresh()
 
-set number
-set relativenumber
-set ruler
-set hidden
-set autowrite
-set cmdheight=1
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
+" Coc only does snippet and additional edit on confirm.
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
-set noswapfile " Disable swaps
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
-set grepprg=ag\ --nogroup\ --nocolor	" Use AG instead of grep
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
+
+" Remap for format selected region
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+"
+" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+" Remap for do codeAction of current line
+nmap <leader>ac  <Plug>(coc-codeaction)
+" Fix autofix problem of current line
+nmap <leader>qf  <Plug>(coc-fix-current)
+
+" Create mappings for function text object, requires document symbols feature of languageserver.
+xmap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap if <Plug>(coc-funcobj-i)
+omap af <Plug>(coc-funcobj-a)
+
+" Use `:Format` to format current buffer
+command! -nargs=0 Format :call CocAction('format')
+
+" Use `:Fold` to fold current buffer
+command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+
+" use `:OR` for organize import of current buffer
+command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+
+command! TrimWhiteSpace call TrimWhiteSpace()
+
+" Add status line support, for integration with other plugin, checkout `:h coc-status`
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+
+" Using CocList
+" Show all diagnostics
+nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+" Manage extensions
+nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+" Show commands
+nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+" Find symbol of current document
+nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
+" Marketplace
+nnoremap <silent> <space>m  :<C-u>CocList marketplace<cr>
+" Search workspace symbols
+nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+" Do default action for next item.
+nnoremap <silent> <space>j  :<C-u>CocNext<CR>
+" Do default action for previous item.
+nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+" Resume latest coc list
+nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+
+" Functions
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+function! TrimWhiteSpace()
+  let l:save = winsaveview()
+  keeppatterns %s/\s\+$//e
+  call winrestview(l:save)
+endfunction
 
 " Autocmds
 
-" Close vim if only buffer is nerd tree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
-" ALE Bindings
-
-function ALELSPMappings()
-  let l:lsp_found=0
-  for l:linter in ale#linter#Get(&filetype) | if !empty(l:linter.lsp) | let l:lsp_found=1 | endif | endfor
-  if (l:lsp_found)
-    nnoremap <buffer> gd :ALEGoToDefinition<CR>
-    nnoremap <buffer> <C-^> :ALEFindReferences<CR>
-  endif
-endfunction
-autocmd BufRead,FileType * call ALELSPMappings()
+augroup mygroup
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end

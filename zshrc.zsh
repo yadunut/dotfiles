@@ -20,9 +20,12 @@ eval "$(rbenv init -)"
 eval "$(direnv hook zsh)"
 eval "$(thefuck --alias)"
 path+=(/Users/yadunandprem/dev/src/github.com/yadunut/to)
+path+=(/Library/Apple/usr/bin)
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 for file in $HOME/dev/src/github.com/yadunut/dotfiles/zsh/*; do
     source "$file"
 done
+unalias run-help
+autoload run-help
