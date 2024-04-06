@@ -8,18 +8,23 @@
     [ (modulesPath + "/profiles/qemu-guest.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "ata_piix" "uhci_hcd" "virtio_pci" "virtio_scsi" "sd_mod" "sr_mod" ];
+  boot.initrd.availableKernelModules = [ "uhci_hcd" "ehci_pci" "ahci" "virtio_pci" "virtio_scsi" "sd_mod" "sr_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/9b9bda9c-372d-426d-9ad9-6fa9e54962cf";
+    { device = "/dev/disk/by-uuid/12b222f4-bd4b-4f52-9402-c99057a39382";
       fsType = "ext4";
     };
 
+  fileSystems."/boot" =
+    { device = "/dev/disk/by-uuid/0625-632C";
+      fsType = "vfat";
+    };
+
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/b759bc68-44db-46f1-9fa6-6580d0cf9243"; }
+    [ { device = "/dev/disk/by-uuid/d56b2565-66f8-4f22-a078-8b0e4c9bb019"; }
     ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
@@ -27,7 +32,7 @@
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.ens18.useDHCP = lib.mkDefault true;
+  # networking.interfaces.enp6s18.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 }

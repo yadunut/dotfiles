@@ -6,14 +6,15 @@
       ./hardware-configuration.nix
     ];
 
-  boot.loader.grub.enable = true;
-  boot.loader.grub.device = "/dev/sda";
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
 
   nix.settings.experimental-features = ["nix-command" "flakes" ];
 
   networking.hostName = "nixos"; # Define your hostname.
 
   users.users.yadunut = {
+    shell = pkgs.zsh;
     isNormalUser = true;
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
@@ -34,9 +35,12 @@
   age.secrets.tailscale.file = ./secrets/tailscale.age;
 
 
+  programs.zsh.enable = true;
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
+
+  services.qemuGuest.enable = true;
   services.openssh.enable = true;
   services.tailscale = {
     enable = true;
