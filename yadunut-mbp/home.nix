@@ -18,11 +18,22 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = [
+    pkgs.bat
+    pkgs.beancount
+    pkgs.coq
+    pkgs.delta
+    # pkgs.dive
+    pkgs.entr
+    pkgs.fava
+    pkgs.fd
     pkgs.htop
     pkgs.ripgrep
-    pkgs.bat
-    pkgs.delta
-    pkgs.fd
+    pkgs.typst
+    pkgs.wget
+
+    # Neovim deps
+    # pkgs.texlab
+    # pkgs.efm-langserver
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -53,6 +64,15 @@
     EDITOR = "nvim";
   };
 
+  programs.direnv = {
+    enable = true;
+    enableZshIntegration = true;
+    nix-direnv.enable = true;
+    config = {
+      hide_env_diff = true;
+    };
+  };
+
   programs.fzf.enable = true;
   programs.fzf.enableZshIntegration = true;
 
@@ -67,37 +87,6 @@
 
   programs.lazygit.enable = true;
 
-  programs.zsh = {
-    enable = true;
-    prezto = {
-      enable = true;
-      editor.keymap = "vi";
-      editor.dotExpansion = true;
-      pmodules = [
-        "environment"
-        "terminal"
-        "utility"
-        "directory"
-        "editor"
-        "history"
-        "syntax-highlighting"
-        "history-substring-search"
-        "autosuggestions"
-        "completion"
-      ];
-     };
-    shellAliases = {
-      lg = "lazygit";
-      cat = "bat";
-      diff = "delta";
-      s = "kitty +kitten ssh";
-    };
-  };
-
-  programs.starship = {
-    enable = true;
-    enableZshIntegration = true;
-  };
   programs.neovim.enable = true;
 
   # Let Home Manager install and manage itself.
