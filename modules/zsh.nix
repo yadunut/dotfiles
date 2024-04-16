@@ -3,6 +3,11 @@
 
   home.packages = [
   pkgs.zsh-completions
+    pkgs.bat
+    pkgs.fd
+    pkgs.htop
+    pkgs.ripgrep
+    pkgs.wget
   ];
   programs.zsh = {
     enable = true;
@@ -24,12 +29,19 @@
       ];
      };
     shellAliases = {
-      lg = "lazygit";
       cat = "bat";
       diff = "delta";
-      s = "kitty +kitten ssh";
     };
   };
+
+  programs.fzf.enable = true;
+  programs.fzf.enableZshIntegration = true;
+
+  programs.zoxide.enable = true;
+  programs.zoxide.enableZshIntegration = true;
+
+  programs.eza.enable = true;
+  programs.eza.enableZshIntegration = true;
 
   programs.starship = {
     enable = true;

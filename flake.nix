@@ -17,7 +17,7 @@
 
       # Specify your home configuration modules here, for example,
       # the path to your home.nix.
-      modules = [ ./yadunut-mbp/home.nix  ./modules/zsh.nix ./modules/neovim.nix ];
+      modules = [ ./yadunut-mbp/home.nix  ./modules/zsh.nix ./modules/neovim.nix ./modules/git.nix ];
 
       # Optionally use extraSpecialArgs
       # to pass through arguments to home.nix

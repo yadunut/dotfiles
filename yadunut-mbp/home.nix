@@ -18,18 +18,14 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = [
-    pkgs.bat
     pkgs.beancount
     pkgs.coq
     pkgs.delta
     # pkgs.dive
     pkgs.entr
     pkgs.fava
-    pkgs.fd
-    pkgs.htop
-    pkgs.ripgrep
     pkgs.typst
-    pkgs.wget
+    pkgs.lazygit
 
     # Neovim deps
     # pkgs.texlab
@@ -64,6 +60,11 @@
     EDITOR = "nvim";
   };
 
+  programs.zsh.shellAliases = { 
+    lg = "lazygit"; 
+    s = "kitty +kitten ssh";
+  };
+
   programs.direnv = {
     enable = true;
     enableZshIntegration = true;
@@ -73,22 +74,20 @@
     };
   };
 
-  programs.fzf.enable = true;
-  programs.fzf.enableZshIntegration = true;
-
-  programs.zoxide.enable = true;
-  programs.zoxide.enableZshIntegration = true;
-
-  programs.eza.enable = true;
-  programs.eza.enableZshIntegration = true;
-
   programs.kitty.shellIntegration.enableZshIntegration = true;
   programs.emacs.enable = true;
-
-  programs.lazygit.enable = true;
 
   programs.neovim.enable = true;
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+
+  programs.git.extraConfig = {
+    gpg.ssh.program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";
+    user.signingkey = "~/.ssh/yadunut_ed25519.pub";
+  };
+
+  programs.gh = {
+    enable = true;
+  };
 }
