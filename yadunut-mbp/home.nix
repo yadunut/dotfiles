@@ -1,6 +1,11 @@
 { config, pkgs, ... }:
 
 {
+  imports = [
+   (import ../modules/zsh.nix)
+   (import ../modules/git.nix)
+   (import ../modules/neovim.nix)
+  ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "yadunut";
@@ -25,6 +30,7 @@
     pkgs.entr
     pkgs.fava
     pkgs.typst
+    pkgs.typst-lsp
     pkgs.lazygit
 
     # Neovim deps
@@ -43,7 +49,8 @@
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
-  ];
+  ]; 
+
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
@@ -85,6 +92,7 @@
   programs.git.extraConfig = {
     gpg.ssh.program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";
     user.signingkey = "~/.ssh/yadunut_ed25519.pub";
+    core.excludesFile = "~/.gitignore_global";
   };
 
   programs.gh = {

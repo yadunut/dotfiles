@@ -1,13 +1,12 @@
 { config, pkgs, ... }: 
 {
-
-  home.packages = [
-  pkgs.zsh-completions
-    pkgs.bat
-    pkgs.fd
-    pkgs.htop
-    pkgs.ripgrep
-    pkgs.wget
+  home.packages = with pkgs; [
+      zsh-completions
+      bat
+      fd
+      htop
+      ripgrep
+      wget
   ];
   programs.zsh = {
     enable = true;
@@ -17,17 +16,17 @@
       editor.dotExpansion = true;
       pmodules = [
         "environment"
-        "terminal"
-        "utility"
-        "directory"
-        "editor"
-        "history"
-        "syntax-highlighting"
-        "history-substring-search"
-        "autosuggestions"
-        "completion"
+          "terminal"
+          "utility"
+          "directory"
+          "editor"
+          "history"
+          "syntax-highlighting"
+          "history-substring-search"
+          "autosuggestions"
+          "completion"
       ];
-     };
+    };
     shellAliases = {
       cat = "bat";
       diff = "delta";

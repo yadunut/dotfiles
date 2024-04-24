@@ -13,10 +13,7 @@
 
       rebase.autostash = true;
 
-      core.excludefile = "~/.gitignore_global";
-
       push.autoSetupRemote = true;
-
 
       commit.gpgsign = true;
       commit.verbose = true;
