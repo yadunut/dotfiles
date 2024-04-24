@@ -27,14 +27,14 @@
       system = "x86_64-linux";
 
       modules = [
-        ./configuration.nix
+        ./falcon-nixos/configuration.nix
         agenix.nixosModules.default
         { _module.args = { inherit inputs; };}
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.yadunut = import ./home.nix;
+          home-manager.users.yadunut = import ./falcon-nixos/home.nix;
         }
       ];
     };
