@@ -17,10 +17,6 @@
     shell = pkgs.zsh;
     isNormalUser = true;
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-    packages = with pkgs; [
-      neovim
-      wget
-    ];
     openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJXOpmWsAnl2RtOuJJMRUx+iJTwf2RWJ1iS3FqXJFzFG" ];
   };
   security.sudo.wheelNeedsPassword = false;
@@ -49,6 +45,22 @@
   };
   environment.variables.EDITOR = "nvim";
 
+  nixpkgs.config.allowUnfree = true;
+
+  hardware.opengl = {
+  enable = true;
+  };
+
+  hardware.nvidia = {
+    modesetting.enable = true;
+    powerManagement.enable = false;
+    powerManagement.finegrained = false;
+    open = false;
+    nvidiaSettings = false;
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
+  };
+  # Need this for nvidia-smi
+  services.xserver.videoDrivers = [ "nvidia" ];
 
   system.stateVersion = "23.11"; # Did you read the comment?
 
