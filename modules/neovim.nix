@@ -8,4 +8,7 @@
     # extraLuaConfig = '' '';
     # extraPackages = [ ];
   };
+  home.packages = [
+    pkgs.nil
+  ];
 }

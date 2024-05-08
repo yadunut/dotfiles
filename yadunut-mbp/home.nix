@@ -32,6 +32,7 @@
     pkgs.typst
     pkgs.typst-lsp
     pkgs.lazygit
+    pkgs.jq
 
     # Neovim deps
     # pkgs.texlab
