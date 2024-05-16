@@ -4,13 +4,13 @@
   home.homeDirectory = "/home/yadunut";
 
   home.packages = with pkgs; [
-  ripgrep
+    ripgrep
   ];
 
   imports = [
-   (import ../modules/zsh.nix)
-   (import ../modules/git.nix)
-   (import ../modules/neovim.nix)
+    (import ../modules/zsh.nix)
+    (import ../modules/git.nix)
+    (import ../modules/neovim.nix)
   ];
 
   programs.direnv = {

@@ -2,9 +2,9 @@
 
 {
   imports = [
-   (import ../modules/zsh.nix)
-   (import ../modules/git.nix)
-   (import ../modules/neovim.nix)
+    (import ../modules/zsh.nix)
+    (import ../modules/git.nix)
+    (import ../modules/neovim.nix)
   ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -33,6 +33,8 @@
     pkgs.typst-lsp
     pkgs.lazygit
     pkgs.jq
+    pkgs.nixfmt-rfc-style
+    pkgs.just
 
     # Neovim deps
     # pkgs.texlab
