@@ -6,7 +6,7 @@
     delta.enable = true;
     lfs.enable = true;
     extraConfig = {
-      init.defautBranch = "main";
+      init.defaultBranch = "main";
 
       pull.rebase = true;
       pull.autostash = true;

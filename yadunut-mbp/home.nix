@@ -35,6 +35,8 @@
     pkgs.jq
     pkgs.nixfmt-rfc-style
     pkgs.just
+    pkgs.pyright
+    pkgs.yt-dlp
 
     # Neovim deps
     # pkgs.texlab

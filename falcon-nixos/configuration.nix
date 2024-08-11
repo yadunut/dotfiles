@@ -1,4 +1,4 @@
-{ config, lib, pkgs, inputs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   imports =
@@ -11,7 +11,7 @@
 
   nix.settings.experimental-features = ["nix-command" "flakes" ];
 
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "falcon-nixos"; # Define your hostname.
 
   users.users.yadunut = {
     shell = pkgs.zsh;
