@@ -10,19 +10,34 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     flake-utils.url = "github:numtide/flake-utils";
+    nixvim = {
+        url = "github:nix-community/nixvim";
+        inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { nixpkgs, home-manager, flake-utils, agenix, ... }@inputs: {
-    homeConfigurations."yadunut@yadunut-mbp" = home-manager.lib.homeManagerConfiguration {
-      pkgs = import nixpkgs {
-        system = "aarch64-darwin";
-        config = {
-          allowUnfree = true;
+  outputs = { nixpkgs, home-manager, flake-utils, agenix, nixvim, ... }@inputs: {
+    homeConfigurations = {
+      "yadunut@yadunut-mbp" = home-manager.lib.homeManagerConfiguration {
+        pkgs = import nixpkgs {
+          system = "aarch64-darwin";
+          config = {
+            allowUnfree = true;
+          };
         };
+        modules = [ ./yadunut-mbp/home.nix ];
       };
-      modules = [ ./yadunut-mbp/home.nix ];
-    };
+      "yadunut@yadunut-mba" = home-manager.lib.homeManagerConfiguration {
 
+        pkgs = import nixpkgs {
+          system = "aarch64-darwin";
+          config = {
+            allowUnfree = true;
+          };
+        };
+        modules = [ ./yadunut-mba/home.nix ];
+      };
+  };
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
