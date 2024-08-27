@@ -28,14 +28,18 @@
         modules = [ ./yadunut-mbp/home.nix ];
       };
       "yadunut@yadunut-mba" = home-manager.lib.homeManagerConfiguration {
-
         pkgs = import nixpkgs {
           system = "aarch64-darwin";
           config = {
             allowUnfree = true;
           };
         };
-        modules = [ ./yadunut-mba/home.nix ];
+        extraSpecialArgs = {
+          inherit inputs;
+        };
+        modules = [
+          ./yadunut-mba/home.nix
+        ];
       };
   };
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {

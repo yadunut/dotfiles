@@ -1,10 +1,11 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   imports = [
-    (import ../modules/zsh.nix)
-    (import ../modules/neovim.nix)
-    (import ../modules/git.nix)
+    ../modules/zsh.nix
+    ../modules/neovim.nix
+    ../modules/git.nix
+    ../modules/wezterm
   ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -30,6 +31,7 @@
     pkgs.raycast
     pkgs.cocoapods
     pkgs.tailscale
+    pkgs.entr
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
