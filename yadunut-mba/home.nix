@@ -26,12 +26,14 @@
   home.packages = [
     pkgs.lazygit
     pkgs.jq
+    pkgs.todo-txt-cli
 
     pkgs.wezterm
     pkgs.raycast
     pkgs.cocoapods
     pkgs.tailscale
     pkgs.entr
+    pkgs.vscode
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
@@ -82,8 +84,19 @@
   #  /etc/profiles/per-user/yadunut/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    # EDITOR = "emacs";
+    JAVA_HOME="/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home";
+    ANDROID_HOME="$HOME/Library/Android/sdk";
+    EDITOR="nvim";
+    VISUAL="nvim";
   };
+  home.sessionPath = [
+    "$ANDROID_HOME/emulator"
+    "$ANDROID_HOME/platform-tools"
+  ];
+  programs.zsh.shellAliases = { 
+    lg = "lazygit"; 
+  };
+
   programs.direnv = {
     enable = true;
     enableZshIntegration = true;

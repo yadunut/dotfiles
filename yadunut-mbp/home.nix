@@ -38,8 +38,6 @@
     pkgs.pyright
     pkgs.yt-dlp
     pkgs.rsync
-
-    pkgs.wezterm
     # Neovim deps
     # pkgs.texlab
     # pkgs.efm-langserver
