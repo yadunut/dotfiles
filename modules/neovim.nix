@@ -17,6 +17,7 @@
           tsserver.enable = true; # TS/JS
           pyright.enable = true; # Python
           biome.enable = true; # TS/JS
+          ruff.enable = true;
         };
         keymaps.lspBuf = {
           gd = { action = "definition"; desc = "Goto Definition"; };
@@ -60,8 +61,8 @@
             { name = "luasnip"; keywordLength = 3; }
           ];
           window = {
-            completion = { border = "solid"; };
-            documentation = { border = "solid"; };
+            # completion = { border = "solid"; };
+            # documentation = { border = "solid"; };
           };
           mapping = {
             "<C-n>" = "cmp.mapping.select_next_item()";
@@ -80,8 +81,15 @@
       cmp-path.enable = true;
       cmp_luasnip.enable = true;
       cmp-cmdline.enable = true;
+      nvim-tree = {
+        enable = true;
+        view.side = "right";
+        updateFocusedFile.enable = true;
+      };
 
       luasnip.enable = true;
+
+      bufferline.enable = true;
 
       treesitter = {
         enable = true;
@@ -97,6 +105,14 @@
       telescope = {
         enable = true;
         extensions.fzf-native.enable = true;
+        settings = {
+          defaults = {
+            mappings = {
+              i = { "<C-t>".__raw = "require('trouble.sources.telescope').open"; };
+              n = { "<C-t>".__raw = "require('trouble.sources.telescope').open"; };
+            };
+          };
+        };
       };
     };
     opts = {
@@ -125,8 +141,10 @@
       { action = "<cmd>Telescope find_files<CR>"; key = "<leader><leader>"; options.desc = "Find Files"; }
       { action = "<cmd>Telescope live_grep<CR>"; key = "<leader>fg"; options.desc = "Grep";}
       { action = "<cmd>Telescope buffers<CR>"; key = "<leader>fb"; options.desc = "Find Buffers";}
+      { action = "<cmd>NvimTreeToggle<CR>"; key = "<leader>tt"; options.desc = "Tree View";}
       { action = "gj"; key = "j"; mode = [ "n" ]; }
       { action = "gk"; key = "k"; mode = [ "n" ]; }
+      { action = "<Esc>"; key = "jk"; mode = [ "i" ]; }
       { action = "<cmd>Trouble diagnostics toggle<CR>"; key = "<leader>tr"; }
       { action = "<cmd>Neogit<CR>"; key = "<leader>gg"; options.desc = "Open Git"; }
     ];
