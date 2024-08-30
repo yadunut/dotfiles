@@ -25,6 +25,9 @@
             allowUnfree = true;
           };
         };
+        extraSpecialArgs = {
+          inherit inputs;
+        };
         modules = [ ./yadunut-mbp/home.nix ];
       };
       "yadunut@yadunut-mba" = home-manager.lib.homeManagerConfiguration {

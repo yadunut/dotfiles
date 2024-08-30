@@ -54,6 +54,7 @@
         settings = {
           sources = [
             { name = "nvim_lsp"; }
+            { name = "nvim_lua"; }
             { name = "emoji"; }
             { name = "emoji"; }
             { name = "buffer"; option.get_bufnrs.__raw = "vim.api.nvim_list_bufs"; keywordLength = 3; }
@@ -77,6 +78,7 @@
         };
       };
       cmp-nvim-lsp.enable = true;
+      cmp-nvim-lua.enable = true;
       cmp-buffer.enable = true;
       cmp-path.enable = true;
       cmp_luasnip.enable = true;
@@ -100,8 +102,11 @@
           indent.enable = true;
         };
       };
-      which-key.enable = true;
+      treesitter-context.enable = true;
+      treesitter-textobjects.enable = true;
       ts-autotag.enable = true;
+
+      which-key.enable = true;
       telescope = {
         enable = true;
         extensions.fzf-native.enable = true;
@@ -114,11 +119,19 @@
           };
         };
       };
+
+
+      project-nvim = {
+        enable = true;
+        enableTelescope = true;
+      };
+
     };
     opts = {
       number = true;
       relativenumber = true;
       signcolumn = "yes";
+      updatetime = 250;
       undofile = true;
       ignorecase = true;
       smartcase = true;
@@ -131,6 +144,7 @@
       expandtab = true;
       smarttab = true;
       scrolloff = 5;
+      termguicolors = true;
     };
     globals = {
       mapleader = " ";
@@ -138,15 +152,18 @@
     };
     keymaps = [
       { action = ":"; key = ";"; mode = [ "n" ]; }
-      { action = "<cmd>Telescope find_files<CR>"; key = "<leader><leader>"; options.desc = "Find Files"; }
-      { action = "<cmd>Telescope live_grep<CR>"; key = "<leader>fg"; options.desc = "Grep";}
-      { action = "<cmd>Telescope buffers<CR>"; key = "<leader>fb"; options.desc = "Find Buffers";}
-      { action = "<cmd>NvimTreeToggle<CR>"; key = "<leader>tt"; options.desc = "Tree View";}
       { action = "gj"; key = "j"; mode = [ "n" ]; }
       { action = "gk"; key = "k"; mode = [ "n" ]; }
       { action = "<Esc>"; key = "jk"; mode = [ "i" ]; }
+
+      { action = "<cmd>Telescope find_files<CR>"; key = "<leader><leader>"; options.desc = "Find Files"; }
+      { action = "<cmd>Telescope live_grep<CR>"; key = "<leader>fg"; options.desc = "Grep";}
+      { action = "<cmd>Telescope buffers<CR>"; key = "<leader>fb"; options.desc = "Find Buffers";}
+      { action = "<cmd>Telescope projects<CR>"; key = "<leader>pp"; options.desc = "Switch Projects";}
+
       { action = "<cmd>Trouble diagnostics toggle<CR>"; key = "<leader>tr"; }
       { action = "<cmd>Neogit<CR>"; key = "<leader>gg"; options.desc = "Open Git"; }
+      { action = "<cmd>NvimTreeToggle<CR>"; key = "<leader>tt"; options.desc = "Tree View";}
     ];
   };
 }

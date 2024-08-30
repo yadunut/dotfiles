@@ -5,6 +5,7 @@
     (import ../modules/zsh.nix)
     (import ../modules/git.nix)
     (import ../modules/neovim.nix)
+    (import ../modules/wezterm)
   ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -38,6 +39,7 @@
     pkgs.pyright
     pkgs.yt-dlp
     pkgs.rsync
+    pkgs.k9s
     # Neovim deps
     # pkgs.texlab
     # pkgs.efm-langserver
@@ -70,6 +72,7 @@
 
   home.sessionVariables = {
     EDITOR = "nvim";
+    VISUAL = "nvim";
   };
 
   programs.zsh.shellAliases = { 
