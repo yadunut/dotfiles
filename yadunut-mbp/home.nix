@@ -24,6 +24,7 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = [
+    pkgs.go
     pkgs.beancount
     pkgs.coq
     pkgs.delta
@@ -91,8 +92,6 @@
 
   programs.kitty.shellIntegration.enableZshIntegration = true;
   programs.emacs.enable = true;
-
-  programs.neovim.enable = true;
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

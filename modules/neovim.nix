@@ -4,6 +4,12 @@
     inputs.nixvim.homeManagerModules.nixvim
   ];
   programs.nixvim = {
+    performance.combinePlugins.enable = false;
+
+    performance.byteCompileLua.enable = true;
+    performance.byteCompileLua.nvimRuntime = true;
+    performance.byteCompileLua.plugins = true;
+
     enable = true;
     defaultEditor = true;
     colorschemes.gruvbox.enable = true;
@@ -15,9 +21,10 @@
         enable = true;
         servers = {
           tsserver.enable = true; # TS/JS
-          pyright.enable = true; # Python
           biome.enable = true; # TS/JS
-          ruff.enable = true;
+
+          pyright.enable = true; # Python
+          ruff.enable = true; # python
         };
         keymaps.lspBuf = {
           gd = { action = "definition"; desc = "Goto Definition"; };

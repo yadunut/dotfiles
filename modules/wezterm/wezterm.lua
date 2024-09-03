@@ -15,6 +15,9 @@ config.window_frame = {
     font_size = 14,
 }
 
+config.hide_tab_bar_if_only_one_tab = true
+config.tab_bar_at_bottom = true
+
 wezterm.on('update-status', function(window)
     local SOLID_LEFT_ARROW = utf8.char(0xe0b2)
     local color_scheme = window:effective_config().resolved_palette
