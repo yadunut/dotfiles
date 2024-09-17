@@ -26,13 +26,16 @@
   home.packages = [
     pkgs.lazygit
     pkgs.jq
-    pkgs.todo-txt-cli
+    pkgs.cocoapods
+    pkgs.entr
+    pkgs.gh
+    pkgs.zellij
+
 
     pkgs.wezterm
+    pkgs.arc-browser
     pkgs.raycast
-    pkgs.cocoapods
     pkgs.tailscale
-    pkgs.entr
     pkgs.vscode
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.

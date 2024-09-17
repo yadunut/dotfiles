@@ -15,8 +15,10 @@
     colorschemes.gruvbox.enable = true;
     extraPlugins = [ pkgs.vimPlugins.todo-txt-vim ];
     plugins = {
+      flash.enable = true;
       oil.enable = true;
       neogit.enable = true;
+      hardtime.enable = true;
       lsp = {
         enable = true;
         servers = {
@@ -159,8 +161,8 @@
     };
     keymaps = [
       { action = ":"; key = ";"; mode = [ "n" ]; }
-      { action = "gj"; key = "j"; mode = [ "n" ]; }
-      { action = "gk"; key = "k"; mode = [ "n" ]; }
+      # { action = "gj"; key = "j"; mode = [ "n" ]; }
+      # { action = "gk"; key = "k"; mode = [ "n" ]; }
       { action = "<Esc>"; key = "jk"; mode = [ "i" ]; }
 
       { action = "<cmd>Telescope find_files<CR>"; key = "<leader><leader>"; options.desc = "Find Files"; }
@@ -171,6 +173,11 @@
       { action = "<cmd>Trouble diagnostics toggle<CR>"; key = "<leader>tr"; }
       { action = "<cmd>Neogit<CR>"; key = "<leader>gg"; options.desc = "Open Git"; }
       { action = "<cmd>NvimTreeToggle<CR>"; key = "<leader>tt"; options.desc = "Tree View";}
+
+      { action.__raw = "function() require('flash').jump() end"; key = "s"; mode = [ "n" "x" "o" ]; options.desc = "Flash"; }
+      { action.__raw = "function() require('flash').treesitter() end"; key = "S"; mode = [ "n" "x" "o" ]; options.desc = "Flash Treesitter"; }
+      { action.__raw = "function() require('flash').remote() end"; key = "r"; mode = [ "o" ]; options.desc = "Remote Flash"; }
+      { action.__raw = "function() require('flash').treesitter_search() end"; key = "R"; mode = [ "o" ]; options.desc = "Treesitter Search"; }
     ];
   };
 }

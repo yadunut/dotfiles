@@ -8,6 +8,12 @@
     ripgrep
     wget
   ];
+  programs.bat = {
+    enable = true;
+    config = {
+      theme = "gruvbox-dark";
+    };
+  };
   programs.zsh = {
     enable = true;
     prezto = {
@@ -45,5 +51,8 @@
   programs.starship = {
     enable = true;
     enableZshIntegration = true;
+    settings = {
+      nodejs.disabled = true;
+    };
   };
 }
