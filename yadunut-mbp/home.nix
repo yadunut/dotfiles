@@ -41,9 +41,10 @@
     pkgs.yt-dlp
     pkgs.rsync
     pkgs.k9s
-    # Neovim deps
-    # pkgs.texlab
-    # pkgs.efm-langserver
+    pkgs.nil # nix lsp
+    pkgs.vscode-langservers-extracted
+    pkgs.zellij
+    pkgs.gh
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -78,7 +79,6 @@
 
   programs.zsh.shellAliases = { 
     lg = "lazygit"; 
-    s = "kitty +kitten ssh";
   };
 
   programs.direnv = {
