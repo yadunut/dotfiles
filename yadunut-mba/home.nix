@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, inputs, lib, ... }:
 
 {
   imports = [
@@ -30,8 +30,10 @@
     pkgs.entr
     pkgs.gh
     pkgs.zellij
+    pkgs.httpie
 
 
+    pkgs.emacs
     pkgs.wezterm
     pkgs.arc-browser
     pkgs.raycast
@@ -109,6 +111,54 @@
     };
   };
 
+  programs.zellij = {
+    enable = true;
+    settings = {
+      theme = "gruvbox-light";
+      themes = {
+        solarized-light = {
+          fg = "#657b83";
+          bg = "#fdf6e3";
+          black = "#073642";
+          red = "#dc322f";
+          green = "#859900";
+          yellow = "#b58900";
+          blue = "#268bd2";
+          magenta = "#d33682";
+          cyan = "#2aa198";
+          white = "#eee8d5";
+          orange = "#cb4b16";
+        };
+        gruvbox-light = {
+          bg="#d5c4a1";
+          fg="#504945";
+          orange="#980005";
+          green="#79740e";
+          yellow="#d79921";
+          blue="#458588";
+          magenta="#b16286";
+          cyan="#689d6a";
+          black="#ebdbb2";
+          white="#3c3836";
+          red="#d65d0e";
+        };
+        gruvbox-dark = {
+          fg="#ebdbb2";
+          bg="#504945";
+          black="#3c3836";
+          red="#cc241d";
+          green="#98971a";
+          yellow="#d79921";
+          blue="#458588";
+          magenta="#b16286";
+          cyan="#689d6a";
+          white="#fbf1c7";
+          orange="#d65d0e";
+        };
+      };
+    };
+  };
+
   programs.git.extraConfig = {
     gpg.ssh.program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";
     core.excludesFile = "~/.gitignore_global";
@@ -117,4 +167,5 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+  programs.bat.config.theme = lib.mkForce "gruvbox-light";
 }

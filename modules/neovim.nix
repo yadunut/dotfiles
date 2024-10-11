@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, inputs, lib, ... }:
 {
   imports = [
     inputs.nixvim.homeManagerModules.nixvim
@@ -22,7 +22,7 @@
       lsp = {
         enable = true;
         servers = {
-          tsserver.enable = true; # TS/JS
+          ts-ls.enable = true; # TS/JS
           biome.enable = true; # TS/JS
 
           pyright.enable = true; # Python
@@ -112,7 +112,37 @@
         };
       };
       treesitter-context.enable = true;
-      treesitter-textobjects.enable = true;
+      treesitter-textobjects = {
+        enable = true;
+        move = {
+          enable = true;
+          gotoNextStart = {
+            "]m" = { query = "@function.outer"; };
+            "]]" = { query = "@class.outer"; desc = "Next class start"; };
+            "]o" = { query = "@loop.*"; };
+            "]s" = { query = "@scope"; queryGroup = "locals"; desc = "Next scope"; };
+            "]z" = { query = "@fold"; queryGroup = "folds"; desc = "Next fold"; };
+          };
+          gotoNextEnd = {
+            "]M" = { query = "@function.outer"; };
+            "][" = { query = "@class.outer"; };
+          };
+          gotoPreviousStart = {
+            "[m" = { query = "@function.outer"; };
+            "[[" = { query = "@class.outer"; };
+          };
+          gotoPreviousEnd = {
+            "[M" = { query = "@function.outer"; };
+            "[]" = { query = "@class.outer"; };
+          };
+          gotoNext = {
+            "]d" = { query = "@conditional.outer"; };
+          };
+          gotoPrevious = {
+            "[d" = { query = "@conditional.outer"; };
+          };
+        };
+      };
       ts-autotag.enable = true;
 
       which-key.enable = true;
@@ -134,6 +164,7 @@
         enable = true;
         enableTelescope = true;
       };
+      web-devicons.enable = true;
 
     };
     opts = {
@@ -154,6 +185,8 @@
       smarttab = true;
       scrolloff = 5;
       termguicolors = true;
+      foldmethod = lib.mkForce "expr";
+      foldexpr = lib.mkForce "v:lua.vim.treesitter.foldexpr()";
     };
     globals = {
       mapleader = " ";
@@ -178,6 +211,7 @@
       { action.__raw = "function() require('flash').treesitter() end"; key = "S"; mode = [ "n" "x" "o" ]; options.desc = "Flash Treesitter"; }
       { action.__raw = "function() require('flash').remote() end"; key = "r"; mode = [ "o" ]; options.desc = "Remote Flash"; }
       { action.__raw = "function() require('flash').treesitter_search() end"; key = "R"; mode = [ "o" ]; options.desc = "Treesitter Search"; }
+      { action.__raw = "function() require('flash').toggle() end"; key = "<c-s>"; mode = [ "c" ]; options.desc = "Toggle Flash"; }
     ];
   };
 }
