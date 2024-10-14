@@ -22,11 +22,18 @@
       lsp = {
         enable = true;
         servers = {
+          gleam.enable = true;
           ts-ls.enable = true; # TS/JS
           biome.enable = true; # TS/JS
 
           pyright.enable = true; # Python
           ruff.enable = true; # python
+
+          nil-ls.enable = true; # nix
+
+          cssls.enable = true;
+          jsonls.enable = true;
+          html.enable = true;
         };
         keymaps.lspBuf = {
           gd = { action = "definition"; desc = "Goto Definition"; };
