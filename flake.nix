@@ -9,14 +9,22 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    flake-utils.url = "github:numtide/flake-utils";
     nixvim = {
-        url = "github:nix-community/nixvim";
-        inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
+    flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = { nixpkgs, home-manager, flake-utils, agenix, nixvim, ... }@inputs: {
+  outputs = {
+    nixpkgs,
+    home-manager,
+    flake-utils,
+    agenix,
+    nixvim,
+    ...
+  } @ inputs: {
+    formatter.aarch64-darwin = nixpkgs.legacyPackages.aarch64-darwin.alejandra;
     homeConfigurations = {
       "yadunut@yadunut-mbp" = home-manager.lib.homeManagerConfiguration {
         pkgs = import nixpkgs {
@@ -28,7 +36,7 @@
         extraSpecialArgs = {
           inherit inputs;
         };
-        modules = [ ./yadunut-mbp/home.nix ];
+        modules = [./yadunut-mbp/home.nix];
       };
       "yadunut@yadunut-mba" = home-manager.lib.homeManagerConfiguration {
         pkgs = import nixpkgs {
@@ -44,13 +52,13 @@
           ./yadunut-mba/home.nix
         ];
       };
-  };
+    };
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
         ./falcon-nixos/configuration.nix
         agenix.nixosModules.default
-        { _module.args = { inherit inputs; };}
+        {_module.args = {inherit inputs;};}
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;

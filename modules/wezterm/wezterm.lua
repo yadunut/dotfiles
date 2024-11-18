@@ -60,6 +60,16 @@ config.keys = {
   nav_pane("j", "Down"),
   nav_pane("k", "Up"),
   nav_pane("l", "Right"),
+  {
+    key = ">",
+    mods = "LEADER",
+    action = wezterm.action.MoveTabRelative(1)
+  },
+  {
+    key = "<",
+    mods = "LEADER",
+    action = wezterm.action.MoveTabRelative(-1)
+  },
 }
 
 local function get_current_working_dir(tab)

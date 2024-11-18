@@ -1,9 +1,15 @@
-{ config, pkgs, inputs, lib, ... }:
 {
+  config,
+  pkgs,
+  inputs,
+  lib,
+  ...
+}: {
   imports = [
     inputs.nixvim.homeManagerModules.nixvim
   ];
   programs.nixvim = {
+    nixpkgs.pkgs = pkgs;
     performance.combinePlugins.enable = false;
 
     performance.byteCompileLua.enable = true;
@@ -13,13 +19,22 @@
     enable = true;
     defaultEditor = true;
     colorschemes.gruvbox.enable = true;
-    extraPlugins = [ pkgs.vimPlugins.todo-txt-vim ];
+    extraPlugins = [pkgs.vimPlugins.todo-txt-vim];
     plugins = {
       flash.enable = true;
       oil.enable = true;
       neogit.enable = true;
       hardtime.enable = true;
       lsp = {
+        package = pkgs.vimUtils.buildVimPlugin {
+          name = "lsp";
+          src = pkgs.fetchFromGitHub {
+            owner = "neovim";
+            repo = "nvim-lspconfig";
+            rev = "541f3a2781de481bb84883889e4d9f0904250a56";
+            hash = "sha256-f9CqwKBWZgC2ystm+g7FmsHR0fLcM6Wj+GkSwoUIanw=";
+          };
+        };
         enable = true;
         servers = {
           gleam.enable = true;
@@ -39,17 +54,44 @@
           gopls.enable = true;
         };
         keymaps.lspBuf = {
-          gd = { action = "definition"; desc = "Goto Definition"; };
-          gr = { action = "references"; desc = "Goto References"; };
-          gD = { action = "declaration"; desc = "Goto Declaration"; };
-          gI = { action = "implementation"; desc = "Goto Implementation"; };
-          gT = { action = "type_definition"; desc = "Type Definition"; };
-          K = { action = "hover"; desc = "Hover"; };
-          "<leader>rn" = { action = "rename"; desc = "Rename"; };
+          gd = {
+            action = "definition";
+            desc = "Goto Definition";
+          };
+          gr = {
+            action = "references";
+            desc = "Goto References";
+          };
+          gD = {
+            action = "declaration";
+            desc = "Goto Declaration";
+          };
+          gI = {
+            action = "implementation";
+            desc = "Goto Implementation";
+          };
+          gT = {
+            action = "type_definition";
+            desc = "Type Definition";
+          };
+          K = {
+            action = "hover";
+            desc = "Hover";
+          };
+          "<leader>rn" = {
+            action = "rename";
+            desc = "Rename";
+          };
         };
         keymaps.extra = [
-          { action.__raw = "vim.lsp.buf.code_action"; key = "<leader>la"; }
-          { action.__raw = "function() vim.lsp.buf.format { async = true } end"; key = "<leader>lf"; }
+          {
+            action.__raw = "vim.lsp.buf.code_action";
+            key = "<leader>la";
+          }
+          {
+            action.__raw = "function() vim.lsp.buf.format { async = true } end";
+            key = "<leader>lf";
+          }
         ];
         keymaps.diagnostic = {
           "<leader>cd" = {
@@ -72,13 +114,23 @@
         autoEnableSources = true;
         settings = {
           sources = [
-            { name = "nvim_lsp"; }
-            { name = "nvim_lua"; }
-            { name = "emoji"; }
-            { name = "emoji"; }
-            { name = "buffer"; option.get_bufnrs.__raw = "vim.api.nvim_list_bufs"; keywordLength = 3; }
-            { name = "path"; keywordLength = 3; }
-            { name = "luasnip"; keywordLength = 3; }
+            {name = "nvim_lsp";}
+            {name = "nvim_lua";}
+            {name = "emoji";}
+            {name = "emoji";}
+            {
+              name = "buffer";
+              option.get_bufnrs.__raw = "vim.api.nvim_list_bufs";
+              keywordLength = 3;
+            }
+            {
+              name = "path";
+              keywordLength = 3;
+            }
+            {
+              name = "luasnip";
+              keywordLength = 3;
+            }
           ];
           window = {
             # completion = { border = "solid"; };
@@ -108,7 +160,21 @@
         updateFocusedFile.enable = true;
       };
 
-      luasnip.enable = true;
+      friendly-snippets.enable = true;
+
+      luasnip = {
+        enable = true;
+        settings = {
+          enable_autosnippets = true;
+          store_selection_keys = "<Tab>";
+        };
+        fromVscode = [
+          {
+            lazyLoad = true;
+            paths = "${pkgs.vimPlugins.friendly-snippets}";
+          }
+        ];
+      };
 
       bufferline.enable = true;
 
@@ -143,29 +209,40 @@
         move = {
           enable = true;
           gotoNextStart = {
-            "]m" = { query = "@function.outer"; };
-            "]]" = { query = "@class.outer"; desc = "Next class start"; };
-            "]o" = { query = "@loop.*"; };
-            "]s" = { query = "@scope"; queryGroup = "locals"; desc = "Next scope"; };
-            "]z" = { query = "@fold"; queryGroup = "folds"; desc = "Next fold"; };
+            "]m" = {query = "@function.outer";};
+            "]]" = {
+              query = "@class.outer";
+              desc = "Next class start";
+            };
+            "]o" = {query = "@loop.*";};
+            "]s" = {
+              query = "@scope";
+              queryGroup = "locals";
+              desc = "Next scope";
+            };
+            "]z" = {
+              query = "@fold";
+              queryGroup = "folds";
+              desc = "Next fold";
+            };
           };
           gotoNextEnd = {
-            "]M" = { query = "@function.outer"; };
-            "][" = { query = "@class.outer"; };
+            "]M" = {query = "@function.outer";};
+            "][" = {query = "@class.outer";};
           };
           gotoPreviousStart = {
-            "[m" = { query = "@function.outer"; };
-            "[[" = { query = "@class.outer"; };
+            "[m" = {query = "@function.outer";};
+            "[[" = {query = "@class.outer";};
           };
           gotoPreviousEnd = {
-            "[M" = { query = "@function.outer"; };
-            "[]" = { query = "@class.outer"; };
+            "[M" = {query = "@function.outer";};
+            "[]" = {query = "@class.outer";};
           };
           gotoNext = {
-            "]d" = { query = "@conditional.outer"; };
+            "]d" = {query = "@conditional.outer";};
           };
           gotoPrevious = {
-            "[d" = { query = "@conditional.outer"; };
+            "[d" = {query = "@conditional.outer";};
           };
         };
       };
@@ -178,20 +255,18 @@
         settings = {
           defaults = {
             mappings = {
-              i = { "<C-t>".__raw = "require('trouble.sources.telescope').open"; };
-              n = { "<C-t>".__raw = "require('trouble.sources.telescope').open"; };
+              i = {"<C-t>".__raw = "require('trouble.sources.telescope').open";};
+              n = {"<C-t>".__raw = "require('trouble.sources.telescope').open";};
             };
           };
         };
       };
-
 
       project-nvim = {
         enable = true;
         enableTelescope = true;
       };
       web-devicons.enable = true;
-
     };
     opts = {
       number = true;
@@ -219,25 +294,85 @@
       maplocalleader = " ";
     };
     keymaps = [
-      { action = ":"; key = ";"; mode = [ "n" ]; }
+      {
+        action = ":";
+        key = ";";
+        mode = ["n"];
+      }
       # { action = "gj"; key = "j"; mode = [ "n" ]; }
       # { action = "gk"; key = "k"; mode = [ "n" ]; }
-      { action = "<Esc>"; key = "jk"; mode = [ "i" ]; }
+      {
+        action = "<Esc>";
+        key = "jk";
+        mode = ["i"];
+      }
 
-      { action = "<cmd>Telescope find_files<CR>"; key = "<leader><leader>"; options.desc = "Find Files"; }
-      { action = "<cmd>Telescope live_grep<CR>"; key = "<leader>fg"; options.desc = "Grep";}
-      { action = "<cmd>Telescope buffers<CR>"; key = "<leader>fb"; options.desc = "Find Buffers";}
-      { action = "<cmd>Telescope projects<CR>"; key = "<leader>pp"; options.desc = "Switch Projects";}
+      {
+        action = "<cmd>Telescope find_files<CR>";
+        key = "<leader><leader>";
+        options.desc = "Find Files";
+      }
+      {
+        action = "<cmd>Telescope live_grep<CR>";
+        key = "<leader>fg";
+        options.desc = "Grep";
+      }
+      {
+        action = "<cmd>Telescope buffers<CR>";
+        key = "<leader>fb";
+        options.desc = "Find Buffers";
+      }
+      {
+        action = "<cmd>Telescope projects<CR>";
+        key = "<leader>pp";
+        options.desc = "Switch Projects";
+      }
 
-      { action = "<cmd>Trouble diagnostics toggle<CR>"; key = "<leader>tr"; }
-      { action = "<cmd>Neogit<CR>"; key = "<leader>gg"; options.desc = "Open Git"; }
-      { action = "<cmd>NvimTreeToggle<CR>"; key = "<leader>tt"; options.desc = "Tree View";}
+      {
+        action = "<cmd>Trouble diagnostics toggle<CR>";
+        key = "<leader>tr";
+      }
+      {
+        action = "<cmd>Neogit<CR>";
+        key = "<leader>gg";
+        options.desc = "Open Git";
+      }
+      {
+        action = "<cmd>NvimTreeToggle<CR>";
+        key = "<leader>tt";
+        options.desc = "Tree View";
+      }
 
-      { action.__raw = "function() require('flash').jump() end"; key = "s"; mode = [ "n" "x" "o" ]; options.desc = "Flash"; }
-      { action.__raw = "function() require('flash').treesitter() end"; key = "S"; mode = [ "n" "x" "o" ]; options.desc = "Flash Treesitter"; }
-      { action.__raw = "function() require('flash').remote() end"; key = "r"; mode = [ "o" ]; options.desc = "Remote Flash"; }
-      { action.__raw = "function() require('flash').treesitter_search() end"; key = "R"; mode = [ "o" ]; options.desc = "Treesitter Search"; }
-      { action.__raw = "function() require('flash').toggle() end"; key = "<c-s>"; mode = [ "c" ]; options.desc = "Toggle Flash"; }
+      {
+        action.__raw = "function() require('flash').jump() end";
+        key = "s";
+        mode = ["n" "x" "o"];
+        options.desc = "Flash";
+      }
+      {
+        action.__raw = "function() require('flash').treesitter() end";
+        key = "S";
+        mode = ["n" "x" "o"];
+        options.desc = "Flash Treesitter";
+      }
+      {
+        action.__raw = "function() require('flash').remote() end";
+        key = "r";
+        mode = ["o"];
+        options.desc = "Remote Flash";
+      }
+      {
+        action.__raw = "function() require('flash').treesitter_search() end";
+        key = "R";
+        mode = ["o"];
+        options.desc = "Treesitter Search";
+      }
+      {
+        action.__raw = "function() require('flash').toggle() end";
+        key = "<c-s>";
+        mode = ["c"];
+        options.desc = "Toggle Flash";
+      }
     ];
   };
 }
