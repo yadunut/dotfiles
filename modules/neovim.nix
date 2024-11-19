@@ -36,6 +36,7 @@
           html.enable = true;
           denols.enable = true;
           denols.autostart = false;
+          gopls.enable = true;
         };
         keymaps.lspBuf = {
           gd = { action = "definition"; desc = "Goto Definition"; };
@@ -114,8 +115,24 @@
       treesitter = {
         enable = true;
         folding = true;
+        grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
+          bash
+          json
+          lua
+          make
+          markdown
+          nix
+          regex
+          toml
+          vim
+          vimdoc
+          xml
+          yaml
+          javascript
+          go
+          typescript
+        ];
         settings = {
-          ensure_installed = "all";
           highlight.enable = true;
           indent.enable = true;
         };
