@@ -34,6 +34,8 @@
           cssls.enable = true;
           jsonls.enable = true;
           html.enable = true;
+          denols.enable = true;
+          denols.autostart = false;
         };
         keymaps.lspBuf = {
           gd = { action = "definition"; desc = "Goto Definition"; };

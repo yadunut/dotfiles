@@ -27,24 +27,27 @@
     pkgs.go
     pkgs.beancount
     pkgs.coq
-    pkgs.delta
     # pkgs.dive
     pkgs.entr
     pkgs.fava
+
     pkgs.typst
     pkgs.typst-lsp
+
     pkgs.lazygit
     pkgs.jq
     pkgs.nixfmt-rfc-style
     pkgs.just
     pkgs.pyright
-    pkgs.yt-dlp
     pkgs.rsync
     pkgs.k9s
     pkgs.nil # nix lsp
     pkgs.vscode-langservers-extracted
     pkgs.zellij
     pkgs.gh
+    pkgs.deno
+    pkgs.poppler
+    pkgs.procps
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -58,6 +61,7 @@
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
+
   ]; 
 
 
@@ -75,7 +79,14 @@
   home.sessionVariables = {
     EDITOR = "nvim";
     VISUAL = "nvim";
+    JAVA_HOME="/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home";
+    ANDROID_HOME="$HOME/Library/Android/sdk";
   };
+
+  home.sessionPath = [
+    "$ANDROID_HOME/emulator"
+    "$ANDROID_HOME/platform-tools"
+  ];
 
   programs.zsh.shellAliases = { 
     lg = "lazygit"; 
