@@ -1,5 +1,8 @@
-{ config, pkgs, ... } : 
 {
+  config,
+  pkgs,
+  ...
+}: {
   home.username = "yadunut";
   home.homeDirectory = "/home/yadunut";
 
@@ -31,7 +34,6 @@
     };
   };
 
-
   programs.tmux = {
     enable = true;
     newSession = true;
@@ -43,11 +45,9 @@
       pain-control
     ];
   };
-  programs.zsh.prezto.pmodules = [ "tmux" ];
+  programs.zsh.prezto.pmodules = ["tmux"];
   programs.zsh.prezto.tmux.autoStartRemote = true;
   programs.fzf.tmux.enableShellIntegration = true;
 
-
   home.stateVersion = "23.11";
 }
-

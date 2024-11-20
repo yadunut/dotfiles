@@ -1,6 +1,8 @@
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
     (import ../modules/zsh.nix)
     (import ../modules/git.nix)
@@ -61,9 +63,7 @@
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
-
-  ]; 
-
+  ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
@@ -79,8 +79,8 @@
   home.sessionVariables = {
     EDITOR = "nvim";
     VISUAL = "nvim";
-    JAVA_HOME="/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home";
-    ANDROID_HOME="$HOME/Library/Android/sdk";
+    JAVA_HOME = "/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home";
+    ANDROID_HOME = "$HOME/Library/Android/sdk";
   };
 
   home.sessionPath = [
@@ -88,8 +88,8 @@
     "$ANDROID_HOME/platform-tools"
   ];
 
-  programs.zsh.shellAliases = { 
-    lg = "lazygit"; 
+  programs.zsh.shellAliases = {
+    lg = "lazygit";
   };
 
   programs.direnv = {

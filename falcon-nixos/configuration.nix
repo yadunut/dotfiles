@@ -1,23 +1,26 @@
-{ config, pkgs, inputs, ... }:
-
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  config,
+  pkgs,
+  inputs,
+  ...
+}: {
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  nix.settings.experimental-features = ["nix-command" "flakes" ];
+  nix.settings.experimental-features = ["nix-command" "flakes"];
 
   networking.hostName = "falcon-nixos"; # Define your hostname.
 
   users.users.yadunut = {
     shell = pkgs.zsh;
     isNormalUser = true;
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-    openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJXOpmWsAnl2RtOuJJMRUx+iJTwf2RWJ1iS3FqXJFzFG" ];
+    extraGroups = ["wheel"]; # Enable ‘sudo’ for the user.
+    openssh.authorizedKeys.keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJXOpmWsAnl2RtOuJJMRUx+iJTwf2RWJ1iS3FqXJFzFG"];
   };
   security.sudo.wheelNeedsPassword = false;
 
@@ -30,7 +33,6 @@
 
   age.secrets.tailscale.file = ./secrets/tailscale.age;
 
-
   programs.zsh.enable = true;
   # List services that you want to enable:
 
@@ -41,7 +43,7 @@
   services.tailscale = {
     enable = true;
     authKeyFile = config.age.secrets.tailscale.path;
-    extraUpFlags = [ "--login-server" "http://ts.yadunut.com:444" ];
+    extraUpFlags = ["--login-server" "http://ts.yadunut.com:444"];
   };
   environment.variables.EDITOR = "nvim";
 
@@ -60,9 +62,7 @@
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
   # Need this for nvidia-smi
-  services.xserver.videoDrivers = [ "nvidia" ];
+  services.xserver.videoDrivers = ["nvidia"];
 
   system.stateVersion = "23.11"; # Did you read the comment?
-
 }
-

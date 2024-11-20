@@ -1,6 +1,10 @@
-{ config, pkgs, inputs, lib, ... }:
-
 {
+  config,
+  pkgs,
+  inputs,
+  lib,
+  ...
+}: {
   imports = [
     ../modules/zsh.nix
     ../modules/neovim.nix
@@ -32,10 +36,8 @@
     pkgs.zellij
     pkgs.httpie
 
-
     pkgs.emacs
     pkgs.wezterm
-    pkgs.arc-browser
     pkgs.raycast
     pkgs.tailscale
     pkgs.vscode
@@ -89,17 +91,17 @@
   #  /etc/profiles/per-user/yadunut/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    JAVA_HOME="/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home";
-    ANDROID_HOME="$HOME/Library/Android/sdk";
-    EDITOR="nvim";
-    VISUAL="nvim";
+    JAVA_HOME = "/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home";
+    ANDROID_HOME = "$HOME/Library/Android/sdk";
+    EDITOR = "nvim";
+    VISUAL = "nvim";
   };
   home.sessionPath = [
     "$ANDROID_HOME/emulator"
     "$ANDROID_HOME/platform-tools"
   ];
-  programs.zsh.shellAliases = { 
-    lg = "lazygit"; 
+  programs.zsh.shellAliases = {
+    lg = "lazygit";
   };
 
   programs.direnv = {
@@ -130,30 +132,30 @@
           orange = "#cb4b16";
         };
         gruvbox-light = {
-          bg="#d5c4a1";
-          fg="#504945";
-          orange="#980005";
-          green="#79740e";
-          yellow="#d79921";
-          blue="#458588";
-          magenta="#b16286";
-          cyan="#689d6a";
-          black="#ebdbb2";
-          white="#3c3836";
-          red="#d65d0e";
+          bg = "#d5c4a1";
+          fg = "#504945";
+          orange = "#980005";
+          green = "#79740e";
+          yellow = "#d79921";
+          blue = "#458588";
+          magenta = "#b16286";
+          cyan = "#689d6a";
+          black = "#ebdbb2";
+          white = "#3c3836";
+          red = "#d65d0e";
         };
         gruvbox-dark = {
-          fg="#ebdbb2";
-          bg="#504945";
-          black="#3c3836";
-          red="#cc241d";
-          green="#98971a";
-          yellow="#d79921";
-          blue="#458588";
-          magenta="#b16286";
-          cyan="#689d6a";
-          white="#fbf1c7";
-          orange="#d65d0e";
+          fg = "#ebdbb2";
+          bg = "#504945";
+          black = "#3c3836";
+          red = "#cc241d";
+          green = "#98971a";
+          yellow = "#d79921";
+          blue = "#458588";
+          magenta = "#b16286";
+          cyan = "#689d6a";
+          white = "#fbf1c7";
+          orange = "#d65d0e";
         };
       };
     };
