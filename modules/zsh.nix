@@ -5,7 +5,6 @@
 }: {
   home.packages = with pkgs; [
     zsh-completions
-    bat
     fd
     htop
     ripgrep
@@ -13,9 +12,6 @@
   ];
   programs.bat = {
     enable = true;
-    config = {
-      theme = "gruvbox-dark";
-    };
   };
   programs.zsh = {
     enable = true;
@@ -37,7 +33,8 @@
       ];
     };
     shellAliases = {
-      cat = "bat";
+      cat = "bat --theme=\"$(defaults read -globalDomain AppleInterfaceStyle &> /dev/null && echo 'gruvbox-dark' || echo 'gruvbox-light')\"";
+
       diff = "delta";
     };
   };
