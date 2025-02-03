@@ -14,6 +14,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     flake-utils.url = "github:numtide/flake-utils";
+    # ziggy.url = "github:kristoff-it/ziggy";
+    superhtml.url = "git+https://git.yadunut.dev/yadunut/superhtml";
   };
 
   outputs = {

@@ -1,5 +1,4 @@
 {
-  config,
   pkgs,
   inputs,
   lib,
@@ -12,7 +11,7 @@
     nixpkgs.pkgs = pkgs;
     performance.combinePlugins.enable = false;
 
-    performance.byteCompileLua.enable = true;
+    performance.byteCompileLua.enable = false;
     performance.byteCompileLua.nvimRuntime = true;
     performance.byteCompileLua.plugins = true;
 
@@ -25,6 +24,11 @@
       oil.enable = true;
       neogit.enable = true;
       hardtime.enable = true;
+
+      none-ls = {
+        enable = true;
+        sources.formatting.ocamlformat.enable = true;
+      };
       lsp = {
         package = pkgs.vimUtils.buildVimPlugin {
           name = "lsp";
@@ -45,6 +49,9 @@
           ruff.enable = true; # python
 
           nil_ls.enable = true; # nix
+          rust_analyzer.enable = true;
+          rust_analyzer.installCargo = false;
+          rust_analyzer.installRustc = false;
 
           cssls.enable = true;
           jsonls.enable = true;
@@ -52,6 +59,29 @@
           denols.enable = true;
           denols.autostart = false;
           gopls.enable = true;
+
+          ziggy = {
+            enable = false;
+            package = inputs.ziggy.outputs.packages.aarch64-darwin.ziggy;
+          };
+          ziggy_schema = {
+            enable = false;
+            package = inputs.ziggy.outputs.packages.aarch64-darwin.ziggy;
+          };
+          zls= {
+            package = null;
+            enable = true;
+          };
+
+          superhtml = {
+            enable = true;
+            package = inputs.superhtml.outputs.packages.aarch64-darwin.superhtml;
+          };
+          ocamllsp = {
+            enable = true;
+            package = null;
+          };
+
         };
         keymaps.lspBuf = {
           gd = {
@@ -267,6 +297,11 @@
         enableTelescope = true;
       };
       web-devicons.enable = true;
+
+      lean = {
+        enable = true;
+      };
+      copilot-vim.enable = true;
     };
     opts = {
       number = true;
@@ -313,9 +348,19 @@
         options.desc = "Find Files";
       }
       {
+        action.__raw = "function() require('telescope.builtin').lsp_document_symbols({symbols='method'}) end";
+        key = "<leader>fm";
+        options.desc = "Find Methods";
+      }
+      {
         action = "<cmd>Telescope live_grep<CR>";
         key = "<leader>fg";
         options.desc = "Grep";
+      }
+      {
+        action = "<cmd>Telescope buffers<CR>";
+        key = "<leader>fb";
+        options.desc = "Find Buffers";
       }
       {
         action = "<cmd>Telescope buffers<CR>";
@@ -374,5 +419,125 @@
         options.desc = "Toggle Flash";
       }
     ];
+
+    extraConfigLua = ''
+      vim.api.nvim_create_autocmd('FileType', {
+        group = vim.api.nvim_create_augroup('ziggy', {}),
+        pattern = 'ziggy',
+        callback = function()
+          vim.lsp.start {
+            name = 'Ziggy LSP',
+            cmd = { 'ziggy', 'lsp' },
+            root_dir = vim.loop.cwd(),
+            flags = { exit_timeout = 1000 },
+          }
+        end,
+      })
+
+      vim.api.nvim_create_autocmd('FileType', {
+        group = vim.api.nvim_create_augroup('ziggy_schema', {}),
+        pattern = 'ziggy_schema',
+        callback = function()
+          vim.lsp.start {
+            name = 'Ziggy LSP',
+            cmd = { 'ziggy', 'lsp', '--schema' },
+            root_dir = vim.loop.cwd(),
+            flags = { exit_timeout = 1000 },
+          }
+        end,
+      })
+
+      vim.api.nvim_create_autocmd('FileType', {
+        group = vim.api.nvim_create_augroup('superhtml', {}),
+        pattern = 'superhtml',
+        callback = function()
+          vim.lsp.start {
+            name = 'SuperHTML LSP',
+            cmd = { 'superhtml', 'lsp' },
+            root_dir = vim.loop.cwd(),
+            flags = { exit_timeout = 1000 },
+          }
+        end,
+      })
+      local parser_config = require(
+        'nvim-treesitter.parsers'
+      ).get_parser_configs()
+      parser_config.ziggy = {
+        install_info = {
+          url = 'https://github.com/kristoff-it/ziggy',
+          includes = { 'tree-sitter-ziggy/src' },
+          files = { 'tree-sitter-ziggy/src/parser.c' },
+          branch = 'main',
+          generate_requires_npm = false,
+          requires_generate_from_grammar = false,
+        },
+        filetype = 'ziggy',
+      }
+
+      parser_config.ziggy_schema = {
+        install_info = {
+          url = 'https://github.com/kristoff-it/ziggy',
+          files = { 'tree-sitter-ziggy-schema/src/parser.c' },
+          branch = 'main',
+          generate_requires_npm = false,
+          requires_generate_from_grammar = false,
+        },
+        filetype = 'ziggy-schema',
+      }
+
+      parser_config.supermd = {
+        install_info = {
+          url = 'https://github.com/kristoff-it/supermd',
+          includes = { 'tree-sitter/supermd/src' },
+          files = {
+            'tree-sitter/supermd/src/parser.c',
+            'tree-sitter/supermd/src/scanner.c'
+          },
+          branch = 'main',
+          generate_requires_npm = false,
+          requires_generate_from_grammar = false,
+        },
+        filetype = 'supermd',
+      }
+
+      parser_config.supermd_inline = {
+        install_info = {
+          url = 'https://github.com/kristoff-it/supermd',
+          includes = { 'tree-sitter/supermd-inline/src' },
+          files = {
+            'tree-sitter/supermd-inline/src/parser.c',
+            'tree-sitter/supermd-inline/src/scanner.c'
+          },
+          branch = 'main',
+          generate_requires_npm = false,
+          requires_generate_from_grammar = false,
+        },
+        filetype = 'supermd_inline',
+      }
+
+      parser_config.superhtml = {
+        install_info = {
+          url = 'https://github.com/kristoff-it/superhtml',
+          includes = { 'tree-sitter-superhtml/src' },
+          files = {
+            'tree-sitter-superhtml/src/parser.c',
+            'tree-sitter-superhtml/src/scanner.c'
+          },
+          branch = 'main',
+          generate_requires_npm = false,
+          requires_generate_from_grammar = false,
+        },
+        filetype = 'superhtml',
+      }
+
+      vim.filetype.add {
+        extension = {
+          smd = 'supermd',
+          shtml = 'superhtml',
+          ziggy = 'ziggy',
+          ['ziggy-schema'] = 'ziggy_schema',
+        },
+      }
+    '';
   };
 }

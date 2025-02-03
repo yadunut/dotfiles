@@ -53,6 +53,8 @@
     enableZshIntegration = true;
     settings = {
       nodejs.disabled = true;
+      package.disabled = true;
+      aws.disabled = true;
     };
   };
 }

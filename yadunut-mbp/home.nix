@@ -1,6 +1,6 @@
 {
-  config,
   pkgs,
+  inputs,
   ...
 }: {
   imports = [
@@ -34,7 +34,7 @@
     pkgs.fava
 
     pkgs.typst
-    pkgs.typst-lsp
+    pkgs.tinymist
 
     pkgs.lazygit
     pkgs.jq
@@ -50,6 +50,11 @@
     pkgs.deno
     pkgs.poppler
     pkgs.procps
+
+    pkgs.rust-analyzer
+
+    # (inputs.ziggy.outputs.packages.aarch64-darwin.ziggy)
+    (inputs.superhtml.outputs.packages.aarch64-darwin.superhtml)
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
