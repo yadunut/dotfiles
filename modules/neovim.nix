@@ -30,15 +30,15 @@
         sources.formatting.ocamlformat.enable = true;
       };
       lsp = {
-        package = pkgs.vimUtils.buildVimPlugin {
-          name = "lsp";
-          src = pkgs.fetchFromGitHub {
-            owner = "neovim";
-            repo = "nvim-lspconfig";
-            rev = "541f3a2781de481bb84883889e4d9f0904250a56";
-            hash = "sha256-f9CqwKBWZgC2ystm+g7FmsHR0fLcM6Wj+GkSwoUIanw=";
-          };
-        };
+        # package = pkgs.vimUtils.buildVimPlugin {
+        #   name = "lsp";
+        #   src = pkgs.fetchFromGitHub {
+        #     owner = "neovim";
+        #     repo = "nvim-lspconfig";
+        #     rev = "541f3a2781de481bb84883889e4d9f0904250a56";
+        #     hash = "sha256-f9CqwKBWZgC2ystm+g7FmsHR0fLcM6Wj+GkSwoUIanw=";
+        #   };
+        # };
         enable = true;
         servers = {
           gleam.enable = true;

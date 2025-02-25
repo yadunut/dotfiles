@@ -40,7 +40,6 @@
     pkgs.jq
     pkgs.nixfmt-rfc-style
     pkgs.just
-    pkgs.pyright
     pkgs.rsync
     pkgs.k9s
     pkgs.nil # nix lsp
