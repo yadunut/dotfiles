@@ -51,6 +51,7 @@
     pkgs.procps
 
     pkgs.rust-analyzer
+    pkgs.claude-code
 
     # (inputs.ziggy.outputs.packages.aarch64-darwin.ziggy)
     (inputs.superhtml.outputs.packages.aarch64-darwin.superhtml)
