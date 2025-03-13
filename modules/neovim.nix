@@ -146,8 +146,7 @@
           sources = [
             {name = "nvim_lsp";}
             {name = "nvim_lua";}
-            {name = "emoji";}
-            {name = "emoji";}
+            # {name = "emoji";}
             {
               name = "buffer";
               option.get_bufnrs.__raw = "vim.api.nvim_list_bufs";
