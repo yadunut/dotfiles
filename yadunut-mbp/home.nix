@@ -26,12 +26,8 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = [
-    pkgs.go
-    pkgs.beancount
-    pkgs.coq
     # pkgs.dive
     pkgs.entr
-    pkgs.fava
 
     pkgs.typst
     pkgs.tinymist
@@ -41,21 +37,18 @@
     pkgs.nixfmt-rfc-style
     pkgs.just
     pkgs.rsync
-    pkgs.k9s
     pkgs.nil # nix lsp
     pkgs.vscode-langservers-extracted
     pkgs.zellij
     pkgs.gh
     pkgs.deno
-    pkgs.poppler
-    pkgs.procps
 
     pkgs.rust-analyzer
     pkgs.claude-code
     pkgs.httpie
 
     # (inputs.ziggy.outputs.packages.aarch64-darwin.ziggy)
-    (inputs.superhtml.outputs.packages.aarch64-darwin.superhtml)
+    # (inputs.superhtml.outputs.packages.aarch64-darwin.superhtml)
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the

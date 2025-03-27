@@ -55,6 +55,7 @@
       nodejs.disabled = true;
       package.disabled = true;
       aws.disabled = true;
+      elixir.disabled = true;
     };
   };
 }

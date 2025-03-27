@@ -23,7 +23,13 @@
       flash.enable = true;
       oil.enable = true;
       neogit.enable = true;
-      hardtime.enable = true;
+      hardtime.enable = false;
+      image = {
+        enable = true;
+        settings = {
+          backend = "kitty";
+        };
+      };
 
       none-ls = {
         enable = true;
