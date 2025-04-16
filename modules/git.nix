@@ -22,7 +22,7 @@
       commit.gpgsign = true;
       commit.verbose = true;
 
-      merge.conflictstyle = "zdiff3";
+      # merge.conflictstyle = "zdiff2";
       diff.colorMoved = true;
       diff.algorithm = "histogram";
       feature.experimental = true;

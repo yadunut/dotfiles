@@ -7,6 +7,9 @@
   imports = [
     inputs.nixvim.homeManagerModules.nixvim
   ];
+  home.packages = [
+    pkgs.nodejs_23
+  ];
   programs.nixvim = {
     nixpkgs.pkgs = pkgs;
     performance.combinePlugins.enable = false;

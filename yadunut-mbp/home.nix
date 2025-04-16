@@ -46,6 +46,7 @@
     pkgs.rust-analyzer
     pkgs.claude-code
     pkgs.httpie
+    pkgs.emacs
 
     # (inputs.ziggy.outputs.packages.aarch64-darwin.ziggy)
     # (inputs.superhtml.outputs.packages.aarch64-darwin.superhtml)
@@ -101,7 +102,6 @@
   };
 
   programs.kitty.shellIntegration.enableZshIntegration = true;
-  programs.emacs.enable = true;
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
@@ -115,4 +115,13 @@
   programs.gh = {
     enable = true;
   };
+
+  targets.darwin = {
+    defaults."com.apple.dock".autohide = true;
+    defaults."com.apple.finder".AppleShowAllFiles = true;
+    defaults.NSGlobalDomain.AppleShowAllExtensions = true;
+    defaults.NSGlobalDomain.KeyRepeat = 2;
+    defaults.NSGlobalDomain.ApplePressAndHoldEnabled = false;
+  };
+
 }

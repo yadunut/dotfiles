@@ -13,6 +13,11 @@
   programs.bat = {
     enable = true;
   };
+  programs.dircolors = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
   programs.zsh = {
     enable = true;
     prezto = {
@@ -55,7 +60,6 @@
       nodejs.disabled = true;
       package.disabled = true;
       aws.disabled = true;
-      elixir.disabled = true;
     };
   };
 }
