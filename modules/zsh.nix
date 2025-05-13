@@ -20,6 +20,15 @@
 
   programs.zsh = {
     enable = true;
+    history = {
+      size = 1000000;
+      extended = true;
+      append = true;
+      expireDuplicatesFirst = true;
+      ignoreDups = true;
+      ignoreAllDups = true;
+      ignoreSpace = true;
+    };
     prezto = {
       enable = true;
       editor.keymap = "vi";

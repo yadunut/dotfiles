@@ -47,6 +47,7 @@
     pkgs.claude-code
     pkgs.httpie
     pkgs.emacs
+    pkgs.devenv
 
     # (inputs.ziggy.outputs.packages.aarch64-darwin.ziggy)
     # (inputs.superhtml.outputs.packages.aarch64-darwin.superhtml)

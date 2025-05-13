@@ -7,9 +7,6 @@
   imports = [
     inputs.nixvim.homeManagerModules.nixvim
   ];
-  home.packages = [
-    pkgs.nodejs_23
-  ];
   programs.nixvim = {
     nixpkgs.pkgs = pkgs;
     performance.combinePlugins.enable = false;
@@ -50,7 +47,7 @@
         # };
         enable = true;
         servers = {
-          gleam.enable = true;
+          # gleam.enable = true;
           ts_ls.enable = true; # TS/JS
           biome.enable = true; # TS/JS
 
@@ -65,7 +62,7 @@
           cssls.enable = true;
           jsonls.enable = true;
           html.enable = true;
-          denols.enable = true;
+          denols.enable = false;
           denols.autostart = false;
           gopls.enable = true;
 
